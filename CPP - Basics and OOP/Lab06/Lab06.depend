@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1762299080 source:e:\iti\oop\laps\lap06\main.cpp
+	<iostream>
+	<Windows.h>
+	<conio.h>
+
