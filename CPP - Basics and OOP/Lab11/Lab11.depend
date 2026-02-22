@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1762849280 source:e:\iti\oop\laps\lap11\main.cpp
+	<iostream>
+
+1762847367 source:e:\iti\oop\laps\lap11\point.cpp
+	<iostream>
+
+1762849270 source:e:\iti\oop\laps\lap11\shapes.cpp
+	<iostream>
+
