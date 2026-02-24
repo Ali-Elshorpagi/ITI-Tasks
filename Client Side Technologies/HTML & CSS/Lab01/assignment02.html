@@ -1,0 +1,37 @@
+<html>
+<head>
+<title> Assignment 02 </title>
+</head> 
+<body>
+
+<h2> A Simple C Program <h2>
+
+<pre>
+<p>
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+int exp(int base, int power)
+{
+    if(power==0)
+    {
+        return 1;
+    }
+    else
+    {
+        power--;
+        return base*exp(base,power);
+    }
+}
+main()
+{
+    int x=2 , y=3 ;
+    clrscr() ;
+    printf("\n %d ^ %d = %d",x,y,exp(x,y)) ;
+    getch() ; return 0 ;
+}
+</p>
+</pre>
+
+
+</body>
+</html>
