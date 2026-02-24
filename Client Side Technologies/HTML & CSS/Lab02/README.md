@@ -10,7 +10,6 @@ A collection of **five HTML tasks** plus a server page, focusing on **HTML table
 
 ```
 Lab02/
-├── CSS.pdf
 ├── server.html
 ├── task01.html
 ├── task02.html

@@ -32,9 +32,6 @@ Lab03/
 │   ├── product_style.css
 │   ├── products_style.css
 │   └── signup_style.css
-├── task/
-│   ├── Images/
-│   └── Lab.webm
 ├── aboutus.html
 ├── contact.html
 ├── login.html
