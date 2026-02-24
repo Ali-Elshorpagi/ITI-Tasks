@@ -1,0 +1,57 @@
+body {
+    background-image: url(../assets/bk.png);
+    background-repeat: repeat-x;
+    background-position: center top;
+}
+
+.container-signup {
+    background-color: lightgray;
+    margin: 70px auto;
+    width: 350px;
+    height: 600px;
+    border-radius: 10%;
+}
+
+
+.center-item {
+    display: block;
+    margin: auto auto;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: 0;
+    outline: 0;
+    background-color: lightgray;
+    width: 250px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    border-bottom: 2px solid cyan;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover {
+    border-bottom: 2px solid black;
+}
+
+
+input[type="submit"] {
+    background-color: #d498e2;
+    width: 80px;
+    height: 40px;
+    border-radius: 30%;
+    font-size: 15px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+a:hover {
+    cursor: pointer;
+}

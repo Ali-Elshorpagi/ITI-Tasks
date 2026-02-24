@@ -1,0 +1,109 @@
+body {
+    background-image: url(../assets/bk.png);
+    background-repeat: repeat-x;
+    background-position: center top;
+
+}
+
+header {
+    width: 100%;
+    height: 60px;
+}
+
+.logo {
+    display: inline-block;
+    margin-left: 20px;
+    line-height: 60px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+nav {
+    line-height: 30px;
+    float: right;
+    margin-right: 20px;
+    color: black;
+
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+nav a:hover {
+    background-color: rgb(136, 85, 136);
+    border-radius: 5px;
+}
+
+.container {
+    text-align: center;
+    background-color: rgb(168, 94, 168);
+    width: 70%;
+    padding: 20px;
+    margin: 100px auto;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container p {
+    color: white;
+}
+
+table {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+tr td {
+    display: inline-block;
+    width: 250px;
+    min-height: 180px;
+    background-color: #f5e6d3;
+    border-radius: 30px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+}
+
+td a {
+    color: #d4a259;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+td p {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+footer {
+    height: 20px;
+    padding: 20px;
+    background-color: rgb(168, 94, 168);
+    text-align: center;
+    color: black;
+    border: 3px solid green;
+}
