@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lap 04</title>
+    <script src="External.js">
+
+    </script>
+    <script>
+        // alert("From Internal");
+
+        var num1 = 10, num2 = 22, num3 = null;
+        console.log("the simmition of num1 with 6 digits is: ", num1.toFixed(6))
+        console.log("the simmition of num2 with 6 digits is: ", num2.toFixed(6))
+
+        console.log("the sum of num1, num2 and 6 is: ", num1 + num2);
+        var x;
+        console.log("multiply num1 with x is: ", num1 * x);
+
+        console.log("--------------------------------------------------------------------");
+
+        var data1 = prompt("Enter Value no. 1");
+        var data2 = prompt("Enter Value no. 2");
+        if (data1 == null || data2 == null) {
+            console.log("You Canceled the operations...");
+        } else if (data1 == '' || data2 == '') {
+            console.log("You did not enter any values...");
+        } else if (isNaN(data1 + data2)) {
+            console.log("You should Enter Two Inegers...");
+        } else {
+            console.log(parseFloat(data1) + parseFloat(data2));
+        }
+        console.log("--------------------------------------------------------------------");
+
+        for (var i = 1; i < 6; ++i) {
+            var data = prompt("Enter Value no " + i);
+            if (data == null) {
+                console.log("You Canceled the operations...");
+            } else if (data == '') {
+                console.log("You did not enter any values...");
+            } else if (isNaN(data)) {
+                console.log("You Shoud Enter a Number...");
+            } else {
+                console.log("Item no. " + i + " is: " + parseFloat(data).toFixed(5));
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Hello, This is the first time for writting JS. So 🤞</h1>
+</body>
+
+</html>
