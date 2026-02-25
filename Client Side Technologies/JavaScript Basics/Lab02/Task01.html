@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 01</title>
+    <script>
+        var arr = [3, 1, 2, 4, 3, 5, 1];
+        console.log("the Base Array: " + arr);
+        // function is_the_same_index(item, idx) {
+        //     return arr.indexOf(item) == idx;
+
+        // }
+
+        // var uniqueArr3 = arr.filter(is_the_same_index);
+
+        // var uniqueArr2 = [];
+        // arr.forEach((item, idx) => {
+        //     if (arr.indexOf(item) == idx)
+        //         uniqueArr2.push(item);
+        // });
+        console.log("------Write a JavaScript code to remove duplicate items from an array------");
+        var uniqueArr = [];
+        arr.forEach(item => {
+            if (!uniqueArr.includes(item))
+                uniqueArr.push(item);
+        });
+        console.log("After removing the duplications: " + uniqueArr);
+
+        console.log("------Sort them ascending------");
+
+        function sort_exp(a, b) {
+            return a - b;
+        }
+        uniqueArr.sort(sort_exp);
+        console.log("After sorting: " + uniqueArr);
+
+        console.log("------Filter numbers larger than 50------");
+
+        arr.push(90, 54, 101, 78);
+        // user define function
+        function filter__(arr) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; ++i) {
+                if (arr[i] > 50)
+                    newArr.push(arr[i]);
+            }
+            return newArr;
+        }
+
+        var newArr = filter__(arr);
+        console.log("Filter using user define function: " + newArr);
+
+        // filter built-in function
+        var newArr2 = arr.filter(function (item) {
+            return item > 50;
+        });
+        console.log("Filter using built-in function: " + newArr2);
+
+        console.log("------Display Max and Min Numbers------");
+        // [1].
+        function max_min(arr) {
+            var max = Number.MIN_SAFE_INTEGER, min = Number.MAX_SAFE_INTEGER;
+            for (var i = 0; i < arr.length; ++i) {
+                if (arr[i] > max)
+                    max = arr[i];
+                if (arr[i] < min)
+                    min = arr[i];
+            }
+            return { max, min };
+        }
+        var maxMin1 = max_min(arr);
+
+        // [2].
+        var sortedArr = arr.sort(sort_exp);
+        var maxMin2 = [arr[arr.length - 1], arr[0]];
+
+        // [3]. I think every and some have the same appraoch, also filter like sort
+        function greater(item) {
+
+        }
+        var everyArray = arr.every(greater);
+        // Bonus
+        var maxMin5 = [Math.max(...arr), Math.min(...arr)];
+
+        console.log("------Compute the sum and product of an array------");
+        function sumAll(numbersArray) {
+            var _sum = 0;
+            for (i = 0; i < numbersArray.length; ++i) {
+                if (numbersArray[i] == null) {
+                    console.log("You Canceled the operations...");
+                } else if (numbersArray[i] == '') {
+                    console.log("You did not enter any values...");
+                } else if (isNaN(numbersArray[i])) {
+                    console.log("You should Enter Two Inegers...");
+                } else {
+                    _sum += parseFloat(numbersArray[i]);
+                }
+            }
+            return _sum;
+        }
+        function mulAll(numbersArray) {
+            var _mul = 1;
+            for (i = 0; i < numbersArray.length; ++i) {
+                if (numbersArray[i] == null) {
+                    console.log("You Canceled the operations...");
+                } else if (numbersArray[i] == '') {
+                    console.log("You did not enter any values...");
+                } else if (isNaN(numbersArray[i])) {
+                    console.log("You should Enter Two Inegers...");
+                } else {
+                    _mul *= parseFloat(numbersArray[i]);
+                }
+            }
+            return _mul;
+        }
+        function eval_sumAll(numbersArray) {
+            return numbersArray.join("+");
+        }
+        function eval_sumAll() {
+            var args = Array.from(arguments);
+            // console.log("\n\nARGS: " + args);
+            var ner = args.join("+");
+            // console.log("\n\nARGSRR: " + ner);
+            return ner;
+
+        }
+        var sumMulArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        var sum = sumAll(sumMulArr);
+        var mul = mulAll(sumMulArr);
+        console.log("Product of the array: " + mul);
+        console.log("Sum of the array: " + sum);
+
+        var eval_sum = eval(eval_sumAll(sumMulArr));
+        console.log("Sum of the array using eval(arg): " + eval_sum);
+
+        var eval_mul = eval(eval_sumAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        console.log("Sum of the array using eva(): " + eval_mul);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

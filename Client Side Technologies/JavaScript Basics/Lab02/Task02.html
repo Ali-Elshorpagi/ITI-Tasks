@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 02</title>
+    <script>
+        function convert_first_letter_to_upperCase(data) {
+            var cleaned = data.split(" ");
+            var ans = [];
+            // console.log("Cleand: " + cleaned);
+            for (i in cleaned) {
+                // console.log("Cleand: " + cleaned[i]);
+                var ch = cleaned[i][0];
+                ans.push(ch.toUpperCase() + cleaned[i].slice(1));
+
+            }
+            return ans.join(' ');
+        }
+        var data = prompt("Enter a string");
+        if (data == null) {
+            console.log("You Canceled the operations...");
+        } else if (data == '') {
+            console.log("You did not enter any values...");
+        } else {
+            var newData = convert_first_letter_to_upperCase(data);
+        }
+        console.log("the Final Answer: " + newData);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

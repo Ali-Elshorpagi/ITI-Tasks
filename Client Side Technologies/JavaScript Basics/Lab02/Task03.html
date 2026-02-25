@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 03</title>
+    <script>
+        function convert_first_letter_to_upperCase(data) {
+            var cleaned = data.split(" ");
+            var idx = 0;
+            var max_len = 0;
+            // console.log("Cleand: " + cleaned);
+            for (i in cleaned) {
+                // console.log("Cleand: " + cleaned[i]);
+                if (cleaned[i].length > max_len) {
+                    max_len = cleaned[i].length;
+                    idx = i;
+                }
+            }
+            return cleaned[idx];
+        }
+        var data = prompt("Enter a string");
+        if (data == null) {
+            console.log("You Canceled the operations...");
+        } else if (data == '') {
+            console.log("You did not enter any values...");
+        } else {
+            var res = convert_first_letter_to_upperCase(data);
+        }
+        console.log("the Final Answer: " + res);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
