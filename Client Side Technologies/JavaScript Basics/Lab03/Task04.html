@@ -1,0 +1,238 @@
+<html>
+
+<head>
+    <title>Task 04</title>
+    <script>
+        function display(students) {
+            var table = " ";
+            var rows = students.length, cols = 3;
+            table += "<tr>";
+            table += "<th>Name</th>";
+            table += "<th>Age</th>";
+            table += "<th>Crs</th>";
+            table += "</tr>";
+            for (var r = 0; r < rows; ++r) {
+                table += "<tr>";
+                table += "<td>" + students[r].name + "</td>";
+                table += "<td>" + students[r].age + "</td>";
+                table += "<td>" + students[r].Crs + "</td>";
+                table += "</tr>";
+            }
+            document.write("<table border=1; align=center;>" + table + "</table>");
+        }
+        function searchByName(students, name) {
+            var done = false;
+            var founding = [];
+            for (var item of students) {
+                if (item.name == name) {
+                    done = true;
+                    founding.push(item);
+                }
+            }
+            return { done, ans: founding };
+        }
+
+        function counting(students) {
+            return students.length;
+        }
+
+        function getAllInCS(students) {
+            var newStudents = students.filter(function (st) {
+                return st.Crs == "CS";
+            });
+            return newStudents;
+        }
+
+        function youngestStudent(students) {
+            var minAge = students[0].age;
+            var student = students[0];
+            for (var item of students) {
+                if (item.age < minAge) {
+                    minAge = item.age;
+                    student = item;
+                }
+            }
+            return [student];
+        }
+
+        function sortByAge(students) {
+            var sortedStudents = Array.from(students);
+            sortedStudents.sort(function (a, b) {
+                return a.age - b.age;
+            });
+            return sortedStudents;
+        }
+
+        function getStudentNames(students) {
+            var names = [];
+            for (var item of students) {
+                names.push(item.name);
+            }
+            return names;
+        }
+
+        function checkAllAbove18(students) {
+            var allAbove18 = students.every(function (st) {
+                return st.age >= 18;
+            });
+            return allAbove18;
+        }
+
+        function getStudentsWithSameCrs(students) {
+            var sameCrs = [];
+            for (var i = 0; i < students.length; ++i) {
+                for (var j = i + 1; j < students.length; ++j) {
+                    if (students[i].Crs === students[j].Crs) {
+
+                        if (sameCrs.indexOf(students[i]) === -1)
+                            sameCrs.push(students[i]);
+
+                        if (sameCrs.indexOf(students[j]) === -1)
+                            sameCrs.push(students[j]);
+
+                    }
+                }
+            }
+            return sameCrs;
+        }
+
+        function calculateAverageAge(students) {
+            var sum = 0;
+            for (var item of students) {
+                sum += item.age;
+            }
+            return sum / students.length;
+        }
+
+        function top3Oldest(students) {
+            var sortedStudents = Array.from(students);
+            sortedStudents.sort(function (a, b) {
+                return b.age - a.age;
+            });
+            return sortedStudents.slice(0, 3);
+        }
+
+        function findSameName(students) {
+            var sameName = [];
+
+            for (var i = 0; i < students.length; ++i) {
+                for (var j = i + 1; j < students.length; ++j) {
+                    if (students[i].name === students[j].name) {
+
+                        if (sameName.indexOf(students[i]) === -1)
+                            sameName.push(students[i]);
+                        if (sameName.indexOf(students[j]) === -1)
+                            sameName.push(students[j]);
+                    }
+                }
+            }
+
+            return sameName;
+        }
+
+        function reverseArray(students) {
+            var reversed = [];
+            for (var i = students.length - 1; i > -1; --i) {
+                reversed.push(students[i]);
+            }
+            return reversed;
+        }
+
+        function addEmail(students) {
+            for (var item of students) {
+                item.email = item.name.toLowerCase() + "@iti.com";
+            }
+            return students;
+        }
+
+
+        var students = [
+            { name: "Ali", age: 20, Crs: "CS" },
+            { name: "Ali", age: 20, Crs: "CS" },
+            { name: "Sara", age: 22, Crs: "Math" },
+            { name: "Omar", age: 19, Crs: "Physics" },
+            { name: "Omar", age: 19, Crs: "Physics" },
+            { name: "Laila", age: 21, Crs: "CS" },
+            { name: "Hassan", age: 23, Crs: "Engineering" },
+            { name: "Mona", age: 20, Crs: "Biology" },
+            { name: "Kareem", age: 24, Crs: "Math" },
+            { name: "Kareem", age: 24, Crs: "Math" },
+            { name: "Noor", age: 18, Crs: "CS" }
+        ];
+
+        // [1]. Display All Students
+        document.write(`<h2 style="text-align: center; color: #ff6b6b; margin-top: 20px;">All Students</h2>`);
+        display(students);
+
+        // [2]. Search by Name
+        document.write(`<h2 style="text-align: center; color: #4ecdc4; margin-top: 30px;">Search Student by Name</h2>`);
+        var data = prompt("Enter a Name");
+        if (data != null && data != '') {
+            var res = searchByName(students, data);
+            if (res.done == true) {
+                document.writeln("<br>Data is Found: ");
+                display(res.ans);
+            } else {
+                document.write(`<h5 style="color: red;">Name is wrong</h5>`)
+            }
+        }
+
+        // [3]. Count Students
+        document.write(`<h2 style="text-align: center; color: #f7b731; margin-top: 30px;">Total Student Count</h2>`);
+        var cnt = counting(students);
+        document.write(`<br><h3 style="color: red;">Couting is : ${cnt}</h5>`)
+
+        // [4]. CS Students
+        document.write(`<h2 style="text-align: center; color: #5f27cd; margin-top: 30px;">Computer Science Students</h2>`);
+        display(getAllInCS(students));
+        document.writeln("<br><br>");
+
+        // [5]. Youngest Student
+        document.write(`<h2 style="text-align: center; color: #00d2d3; margin-top: 30px;">Youngest Student</h2>`);
+        display(youngestStudent(students));
+
+        // [6]. Sort by Age
+        document.write(`<h2 style="text-align: center; color: #ff9ff3; margin-top: 30px;">Students Sorted by Age</h2>`);
+        display(sortByAge(students));
+
+        // [7]. Student Names
+        document.write(`<h2 style="text-align: center; color: #48dbfb; margin-top: 30px;">All Student Names </h2>`);
+        var names = getStudentNames(students);
+        document.writeln(`<br><h3 style="color: blue;">Student Names: ${names.join(", ")}</h3>`)
+
+        // [8]. Check All Above 18
+        document.write(`<h2 style="text-align: center; color: #1dd1a1; margin-top: 30px;">Age (18+)</h2>`);
+        var allAbove18 = checkAllAbove18(students);
+        document.write(`<br><h3 style="color: green;">All students above 18: ${allAbove18}</h3>`)
+
+        // [9]. Students with Same Course
+        document.write(`<h2 style="text-align: center; color: #fd79a8; margin-top: 30px;">Students with Same Course</h2>`);
+        display(getStudentsWithSameCrs(students));
+
+        // [10]. Average Age
+        document.write(`<h2 style="text-align: center; color: #a29bfe; margin-top: 30px;">Average Student Age</h2>`);
+        var avgAge = calculateAverageAge(students);
+        document.writeln(`<br><h3 style="color: purple;">Average Age: ${avgAge.toFixed(2)}</h3>`)
+
+        // [11]. Top 3 Oldest
+        document.write(`<h2 style="text-align: center; color: #ff7675; margin-top: 30px;">Top 3 Oldest Students</h2>`);
+        display(top3Oldest(students));
+
+        // [12]. Students with Same Name
+        document.write(`<h2 style="text-align: center; color: #74b9ff; margin-top: 30px;">Students with Duplicate Names</h2>`);
+        display(findSameName(students));
+
+        // [13]. Reversed Array
+        document.write(`<h2 style="text-align: center; color: #ffeaa7; margin-top: 30px;">Reversed Student List</h2>`);
+        display(reverseArray(students));
+
+        // [14]. Add Email
+        document.write(`<h2 style="text-align: center; color: #55efc4; margin-top: 30px;">Students with Email Addresses</h2>`);
+        display(addEmail(students));
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

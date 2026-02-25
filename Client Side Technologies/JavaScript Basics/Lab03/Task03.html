@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>Task 03</title>
+    <link rel="stylesheet" href="styles/login_style.css" />
+    <script>
+        function dalla(urlParams) {
+            var username = urlParams.get('username');
+            var pass = urlParams.get('pass');
+            var done = false;
+            if (username == 'ali' && pass == '123') {
+                done = true;
+            }
+            return done;
+        }
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        flag = dalla(urlParams);
+        if (flag == true) {
+            var childWindow02 = open("DataTask03.html", "child02", "width=500, height=300");
+        } else {
+            var childWindow03 = open("error.html", "child03", "width=500, height=300");
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <table class="container-login">
+        <form method="get" action="#">
+            <tr>
+                <td>
+                    <img class="center-item" src="./assets/pass.png" alt="man" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="center-item" type="text" placeHolder="Enter User Name" name="username" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img class="center-item" src="./assets/passs.png" alt="man" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="center-item" type="password" placeHolder="Enter Your Password" name="pass" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="center-item" type="submit" value="Login" />
+                </td>
+            </tr>
+        </form>
+    </table>
+
+</body>
+
+</html>

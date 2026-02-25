@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 01</title>
+    <script>
+        function printData(text) {
+            var idx = 0;
+            var id = setInterval(function () {
+                document.write(`${text[idx]}`);
+                ++idx;
+                if (idx == text.length)
+                    clearInterval(id);
+            }, 1000)
+        }
+        var text = "Welcome to JS";
+        printData(text);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

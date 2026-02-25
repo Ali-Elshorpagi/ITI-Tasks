@@ -1,0 +1,67 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../assets/bk.png);
+    background-repeat: repeat-x;
+    background-position: center top;
+}
+
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: #ddd;
+}
+
+.logo {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+    line-height: 60px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.nav {
+    vertical-align: middle;
+    line-height: 60px;
+    float: right;
+    margin-right: 20px;
+}
+
+div ul {
+    list-style: none;
+}
+
+div ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+div a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+div a:hover {
+    background-color: rgb(136, 85, 136);
+    border-radius: 5px;
+}
+
+.container {
+    width: 40%;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(181, 96, 181);
+    border-radius: 50px;
+}

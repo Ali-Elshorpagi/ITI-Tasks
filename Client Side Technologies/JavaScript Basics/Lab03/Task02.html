@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 02</title>
+    <script>
+        function counting(counter) {
+            setInterval(function () {
+                document.title = counter;
+                document.write(`<h3 style="height:20px; width:30px;border: 3px solid red; text-align:center; outline: 3px solid red;">${counter++}</h3>`)
+            }, 1000)
+        }
+        var counter = 1;
+        counting(counter);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
