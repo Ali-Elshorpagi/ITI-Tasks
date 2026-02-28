@@ -1,0 +1,61 @@
+const products = [
+  { id: 1, name: "Laptop", price: 30000, stock: 5 },
+  { id: 2, name: "Phone", price: 15000, stock: 0 },
+  { id: 3, name: "Headphone", price: 2000, stock: 10 },
+  { id: 4, name: "Keyboard", price: 1000, stock: 3 }
+];
+
+Suppose you have this array of objects 
+use promises to do these requirments 
+1- Get all products (simulate API) ... use promise + setTimeout to return products after 2 seconds 
+2- Filter available products (stock > 0) using then 
+3- Calculate total price
+4- Apply discount 10% ( reject if total < 5000 )
+
+Note : answer these points using  Promise Chain
+
+===================================================
+You are given two arrays: one represents users and the other represents posts.
+Each post belongs to a specific user.
+
+const users = [
+  { id: 1, name: "Ali" },
+  { id: 2, name: "Sara" }
+];
+
+const posts = [
+  { id: 1, userId: 1, title: "JS Basics" },
+  { id: 2, userId: 1, title: "Async Await" },
+  { id: 3, userId: 2, title: "HTML Tips" }
+];
+
+
+Your task is to write an async function that simulates fetching data from an API using async / await.
+
+
+== Requirements ==
+
+1- Create an async function called showUserPost(userId, postId).
+
+2- The function should:
+
+- Accept userId and postId as parameters.
+
+- Simulate an API delay using await and setTimeout.
+
+- Search for the user with the given userId.
+
+- If the user does not exist, throw an error.
+
+- Search for the post with the given postId that belongs to the given user.
+
+3- If the post does not exist or does not belong to the user, throw an error.
+
+- If both user and post are found:
+
+Print the user name.
+
+Print the post title.
+
+
+
