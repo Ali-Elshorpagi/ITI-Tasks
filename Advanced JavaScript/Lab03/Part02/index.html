@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employees Management</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="controllers">
+        <div class="entities-controller">
+            <label for="pageSize">Entities Per Page </label>
+            <select id="pageSize">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
+    <div class="search-control">
+        <label for="searchInput">Search</label>
+        <input type="search" id="searchInput" placeholder="Search..." autocomplete="off" />
+    </div>
+    <div style="padding: 10px; text-align: center; font-weight: bold;">
+        <span id="employeeCount">Total Employees: 0</span>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th id="id">ID <span class="sort-arrow"></span></th>
+                <th id="name">Name <span class="sort-arrow"></span></th>
+                <th id="position">Position <span class="sort-arrow"></span></th>
+                <th id="office">Office <span class="sort-arrow"></span></th>
+                <th id="age">Age <span class="sort-arrow"></span></th>
+                <th id="startDate">Start Date <span class="sort-arrow"></span></th>
+                <th id="salary">Salary <span class="sort-arrow"></span></th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+    </table>
+
+
+    <div class="table-footer">
+        <div class="table-info" id="tableInfo"></div>
+        <div class="pagination" id="pagination"> </div>
+    </div>
+
+    <div class="add-div">
+        <button id="addBtn">Add New Employee</button>
+    </div>
+
+    <div id="employeeEditPopup" class="popupContainer" style="display: none;">
+        <div class="formBox">
+            <span class="closeButton">&times;</span>
+            <h2>Add New Employee</h2>
+            <form id="employeeEditForm">
+                <input type="hidden" id="employeeIdInput">
+                <div class="inputGroup">
+                    <label for="employeeNameInput">Name:</label>
+                    <input type="text" id="employeeNameInput" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="employeePositionInput">Position:</label>
+                    <input type="text" id="employeePositionInput" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="employeeOfficeInput">Office:</label>
+                    <input type="text" id="employeeOfficeInput" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="employeeAgeInput">Age:</label>
+                    <input type="number" id="employeeAgeInput" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="employeeStartDateInput">Start Date:</label>
+                    <input type="date" id="employeeStartDateInput" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="employeeSalaryInput">Salary:</label>
+                    <input type="number" id="employeeSalaryInput" step="0.01" required>
+                </div>
+                <div class="buttonContainer">
+                    <button type="submit" class="saveButton">Save</button>
+                    <button type="button" class="cancelButton" id="cancelEditButton">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/app.js" type="module"></script>
+
+</body>
+
+</html>
