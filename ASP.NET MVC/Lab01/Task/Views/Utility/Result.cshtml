@@ -1,0 +1,11 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Result</title>
+</head>
+<body>
+    <h2>@ViewBag.Operation Result</h2>
+    <p>@ViewBag.X @(ViewBag.Operation == "Add" ? "+" : "-") @ViewBag.Y = @ViewBag.Result</p>
+    <a href="/utility/showaddform">Back to Form</a>
+</body>
+</html>
