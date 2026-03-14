@@ -1,0 +1,55 @@
+.player {
+    width: 600px;
+    border: 2px solid black;
+    background: #fdeed6;
+    display: flex;
+    padding: 10px;
+    margin: 20px auto;
+}
+
+.controls {
+    margin-left: 50px;
+}
+
+.cover {
+    width: 120px;
+    height: 120px;
+}
+
+.controls {
+    flex: 1;
+    margin-left: 20px;
+}
+
+#seekBar {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btns button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+.playlist {
+    width: 620px;
+    margin: 0 auto;
+    border: 2px solid black;
+    padding: 0;
+}
+
+.playlist li {
+    list-style: none;
+    padding: 12px;
+    cursor: pointer;
+    color: black;
+
+}
+
+.playlist li:nth-child(even) {
+    background: gainsboro;
+}
+
+.playlist li:nth-child(odd) {
+    background: #fdeed6;
+}

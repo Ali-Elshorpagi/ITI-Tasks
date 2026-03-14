@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 03</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="player">
+        <img src="./assets/Clair_Obscur_Expedition_33_Cover.png" alt="Clair Obscur Expedition 33" class="cover" />
+        <div class="controls">
+            <input type="range" id="seekBar" value="0">
+
+            <div class="btns">
+                <button onclick="playAudio()">play</button>
+                <button onclick="pauseAudio()">pause</button>
+                <button onclick="stopAudio()">stop</button>
+            </div>
+        </div>
+    </div>
+
+    <ul class="playlist">
+        <li onclick="loadSong(0)">Clair Obscur： Expedition 33 - Gustave</li>
+        <li onclick="loadSong(1)">Clair Obscur： Expedition 33 - Alicia</li>
+        <li onclick="loadSong(2)">Clair Obscur： Expedition 33 - Lumière</li>
+        <li onclick="loadSong(3)">Clair Obscur： Expedition 33 - Shadow of the Monolith</li>
+    </ul>
+    <audio id="audio"></audio>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
