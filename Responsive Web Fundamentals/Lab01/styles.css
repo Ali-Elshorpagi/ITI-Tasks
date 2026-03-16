@@ -1,0 +1,183 @@
+body {
+    background-color: #f1f1f1;
+}
+
+.navbar {
+    background-color: #2c3e50 !important;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+}
+
+main {
+    padding-top: 1rem;
+}
+
+.bg-group {
+    background-color: #6c89a5 !important;
+    color: white;
+}
+
+.span-font-size {
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.sidebar-left .card {
+    background: white;
+}
+
+.profile-card .profile-main-img {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #f1f1f1;
+}
+
+.profile-img-container .edit-btn {
+    bottom: 5px;
+    right: -5px;
+    border-radius: 50%;
+    padding: 0.25rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.badge {
+    background-color: #2c3e50;
+    color: white;
+    font-weight: normal;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.alert-box {
+    background-color: #8b838277;
+    border-radius: 4px;
+}
+
+.alert-box .card-body {
+    padding: 1rem;
+}
+
+.alert-box p {
+    font-size: 0.9rem;
+}
+
+.feed {
+    padding: 0 15px;
+}
+
+.status-box {
+    background: white;
+}
+
+.post {
+    background: white;
+}
+
+.post .post-header img {
+    width: 50px;
+    height: 50px;
+}
+
+.post .post-header h6 {
+    font-weight: 600;
+    color: #333;
+}
+
+.post .card-text {
+    color: #666;
+    line-height: 1.6;
+}
+
+.post .post-imgs img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.post .post-actions {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 0.75rem;
+}
+
+.post .post-actions .btn {
+    border: none;
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.card-body .btn:hover {
+    background-color: #6991b64f;
+    color: black;
+}
+
+.post .post-actions .btn:hover {
+    background-color: #186ebe4f;
+}
+
+.sidebar-right .card {
+    background: white;
+}
+
+.event-card img,
+.friend-request img {
+    max-width: 100%;
+}
+
+.friend-request .btn-success {
+    background-color: #4CAF50;
+    border: none;
+}
+
+.friend-request .btn-danger {
+    background-color: #f44336;
+    border: none;
+}
+
+.ads {
+    background-color: white;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bugs .card-body {
+    padding: 2rem;
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+}
+
+@media (max-width: 415px) {
+    
+}

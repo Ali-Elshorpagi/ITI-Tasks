@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/home.svg" alt="home icon" width="24" height="24" class="me-2">
+                <span>Logo</span>
+            </a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./assets/globe.svg" alt="global icon" width="24" height="24">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./assets/user.svg" alt="user icon" width="24" height="24">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./assets/mail.svg" alt="mail icon" width="24" height="24">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./assets/bell.svg" alt="notification icon" width="24" height="24">
+                    </a>
+                </li>
+            </ul>
+            <div class="ms-auto">
+                <img src="./assets/profile.png" alt="profile icon" class="rounded-circle profile-img">
+            </div>
+        </nav>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-2 col-md-4 sidebar-left">
+                <section class="card profile-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">My Profile</h5>
+                        <div class="mb-4">
+                            <img src="./assets/profile.png" alt="profile img"
+                                class="rounded-circle profile-main-img"><br>
+                        </div>
+                        <div class="profile-info">
+                            <p class="mb-2 d-flex">
+                                <img src="./assets/edit.svg" alt="edit icon" height="16" class="me-2">
+                                <span class="span-font-size">Backend, AI</span>
+                            </p>
+                            <p class="mb-2 d-flex">
+                                <img src="./assets/home.svg" alt="home icon" width="16" height="16" class="me-2">
+                                <span class="span-font-size">Cairo, EGY</span>
+                            </p>
+                            <p class="mb-0 d-flex">
+                                <img src="./assets/calendar.svg" alt="calendar icon" width="16" height="16"
+                                    class="me-2">
+                                <span class="span-font-size">April 1, 2003</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section class="card mt-2 mb-3 bg-group">
+                    <div class="card-body">
+                        <div class="d-flex mb-2 p-2">
+                            <img src="./assets/users.svg" alt="users img" width="20" height="20" class="me-2">
+                            <span class="span-font-size">My Groups</span>
+                        </div>
+                        <div class="d-flex mb-2 p-2">
+                            <img src="./assets/calendar.svg" alt="calendar icon" width="20" height="20" class="me-2">
+                            <span class="span-font-size">My Events</span>
+                        </div>
+                        <div class="d-flex p-2">
+                            <img src="./assets/users.svg" alt="users icon" width="20" height="20" class="me-2">
+                            <span class="span-font-size">My Photos</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="mb-4">Interests</h5>
+                        <span class="badge me-1 mb-2">News</span>
+                        <span class="badge me-1 mb-2">Watchlist</span>
+                        <span class="badge me-1 mb-2">Art</span>
+                        <span class="badge me-1 mb-2">Design</span>
+                        <span class="badge me-1 mb-2">Friends</span>
+                        <span class="badge me-1 mb-2">Games</span>
+                        <span class="badge me-1 mb-2">Food</span>
+                        <span class="badge me-1 mb-2">News</span>
+                        <span class="badge me-1 mb-2">Design</span>
+                    </div>
+                </section>
+                <section class="card">
+                    <div class="card-body alert-box">
+                        <p class="mb-0"><strong>Hey!</strong></p>
+                        <p class="mb-0">People are looking at your profile. Find out who.</p>
+                    </div>
+                </section>
+            </aside>
+
+
+            <section class="col-lg-6 col-md-8 feed">
+                <div class="card status-box mb-3">
+                    <div class="card-body">
+                        <p class="mb-2 text-muted">Social Media template by Elshorpagi</p>
+                        <div class="d-flex">
+                            <input type="text" class="form-control me-2" placeholder="Status: Feeling Blue">
+                            <button class="btn btn-secondary">Post</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <article class="card post mb-3">
+                    <div class="card-body">
+                        <div class="post-header d-flex align-items-center mb-3">
+                            <img src="./assets/profile.png" alt="profile img" class="rounded-circle me-3">
+                            <div class="flex-grow-1">
+                                <h6 class="span-font-size mb-0">Mohamed Badr</h6>
+                            </div>
+                            <span class="text-muted">1 min</span>
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <div class="post-imgs row g-2 mb-3">
+                            <div class="col-6">
+                                <img src="./assets/profile.png" alt="post img" class="img-fluid rounded">
+                            </div>
+                            <div class="col-6">
+                                <img src="./assets/profile.png" alt="post img" class="img-fluid rounded">
+                            </div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="btn btn-sm btn-light me-2">
+                                <img src="./assets/like.svg" alt="like" width="16" height="16" class="me-1"> Like
+                            </button>
+                            <button class="btn btn-sm btn-light">
+                                <img src="./assets/comment.svg" alt="comment" width="16" height="16" class="me-1">
+                                Comment
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+
+
+                <article class="card post mb-3">
+                    <div class="card-body">
+                        <div class="post-header d-flex align-items-center mb-3">
+                            <img src="./assets/profile.png" alt="profile img" class="rounded-circle me-3">
+                            <div class="flex-grow-1">
+                                <h6 class="span-font-size mb-0">Amr Albaz</h6>
+                            </div>
+                            <span class="text-muted">16 min</span>
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <div class="post-actions">
+                            <button class="btn btn-sm btn-light me-2">
+                                <img src="./assets/like.svg" alt="like" width="16" height="16" class="me-1"> Like
+                            </button>
+                            <button class="btn btn-sm btn-light">
+                                <img src="./assets/comment.svg" alt="comment" width="16" height="16" class="me-1">
+                                Comment
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card post mb-3">
+                    <div class="card-body">
+                        <div class="post-header d-flex align-items-center mb-3">
+                            <img src="./assets/profile.png" alt="profile img" class="rounded-circle me-3">
+                            <div class="flex-grow-1">
+                                <h6 class="span-font-size mb-0">Ali Yousef</h6>
+                            </div>
+                            <span class="text-muted">32 min</span>
+                        </div>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <div class="post-imgs mb-3">
+                            <img src="./assets/profile.png" alt="post img" class="img-fluid rounded">
+                        </div>
+                        <div class="post-actions">
+                            <button class="btn btn-sm btn-light me-2">
+                                <img src="./assets/like.svg" alt="like" width="16" height="16" class="me-1"> Like
+                            </button>
+                            <button class="btn btn-sm btn-light">
+                                <img src="./assets/comment.svg" alt="comment" width="16" height="16" class="me-1">
+                                Comment
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <aside class="col-lg-3 sidebar-right">
+                <section class="card event-card mb-3">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Upcoming Events:</h6>
+                        <img src="./assets/profile.png" alt="Event Image" class="rounded mb-2">
+                        <p class="mb-1 fw-bold">Holiday</p>
+                        <p class="text-muted mb-2">Friday 15:00</p>
+                        <button class="btn btn-sm btn-light w-100">Info</button>
+                    </div>
+                </section>
+
+                <section class="card friend-request mb-3">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Friend Request</h6>
+                        <img src="./assets/profile.png" alt="User Avatar" class="rounded-circle mb-2"
+                            style="width: 60px; height: 60px;">
+                        <p class="span-font-size mb-2">Ahmed Ateya</p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-success flex-fill">✓</button>
+                            <button class="btn btn-sm btn-danger flex-fill">✕</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card ads mb-3">
+                    <div class="card-body text-center">
+                        <p class="mb-0 text-muted">ADS</p>
+                    </div>
+                </section>
+
+                <section class="card bugs text-center">
+                    <div class="card-body">
+                        <img src="./assets/bug.svg" alt="bug icon" width="48" height="48">
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer mt-4">
+        <div class="container-fluid">
+            <p class="text-center mb-0 py-3">Powered by Ali Elshorpagi</p>
+        </div>
+    </footer>
+</body>
+
+</html>
