@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Visualizer</title>
+    <link rel="stylesheet" href="visualizer.css" />
+</head>
+
+<body>
+    <main class="page">
+        <section class="card">
+            <header class="header">
+                <h1>Sorting Visualizer</h1>
+                <p>
+                    Animate sorting step-by-step with operation highlights.
+                    Colors: <span class="chip compare">Comparing</span>
+                    <span class="chip swap">Swapping</span>
+                    <span class="chip sorted">Sorted</span>
+                </p>
+            </header>
+
+            <section class="controls" aria-label="Visualizer controls">
+                <label for="arrayInput">Custom Array (comma-separated positive numbers)</label>
+                <input id="arrayInput" type="text" placeholder="e.g. 34, 12, 58, 7, 49" />
+
+                <div class="grid">
+                    <div>
+                        <label for="algorithmSelect">Algorithm</label>
+                        <select id="algorithmSelect">
+                            <option value="quick">QuickSort</option>
+                            <option value="merge">MergeSort</option>
+                            <option value="bubble">BubbleSort</option>
+                            <option value="heap">HeapSort</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="speedRange">Animation Speed</label>
+                        <div class="speed-wrap">
+                            <input id="speedRange" type="range" min="1" max="100" value="50" />
+                            <span id="speedValue">50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button id="randomButton" type="button">Random</button>
+                    <button id="startButton" type="button" class="primary">Start</button>
+                    <button id="pauseButton" type="button">Pause</button>
+                    <button id="resetButton" type="button">Reset</button>
+                </div>
+            </section>
+
+            <section class="status" aria-live="polite">
+                <strong>Current operation:</strong>
+                <span id="operationText">Idle</span>
+            </section>
+
+            <section class="chart-area" aria-label="Bar chart visualization">
+                <div id="barContainer" class="bars"></div>
+            </section>
+        </section>
+    </main>
+
+    <script src="visualizer.js"></script>
+</body>
+
+</html>

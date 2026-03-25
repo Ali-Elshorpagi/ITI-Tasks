@@ -1,0 +1,25 @@
+{
+    "name": "quicksort-lab",
+    "version": "1.0.0",
+    "description": "Production-ready QuickSort implementations (recursive + iterative) with Jest tests.",
+    "main": "src/quicksort.js",
+    "scripts": {
+        "test": "jest",
+        "bench": "node scripts/performance-test.js",
+        "bench:parallel": "node scripts/parallel-performance-test.js",
+        "start:api": "node api/server.js"
+    },
+    "keywords": [
+        "quicksort",
+        "algorithm",
+        "sorting",
+        "jest"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "jest": "^30.0.0"
+    },
+    "dependencies": {
+        "express": "^5.2.1"
+    }
+}

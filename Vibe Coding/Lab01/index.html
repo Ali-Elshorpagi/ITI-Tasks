@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickSort Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <main class="page">
+        <section class="card app-shell">
+            <header class="hero">
+                <h1>Sorting Lab</h1>
+                <p class="hint">
+                    All tools in one page: algorithm runner, performance benchmark, and animated visualizer.
+                </p>
+            </header>
+
+            <div class="workspace-grid">
+                <section id="sortPanel" class="tool-card" aria-label="Sorter tools">
+                    <h2>Sorter</h2>
+                    <label for="numbersInput" class="label">Numbers</label>
+                    <input id="numbersInput" type="text" placeholder="e.g. 3,5,2,6,1" autocomplete="off" />
+
+                    <label for="algorithmSelect" class="label">Algorithm</label>
+                    <select id="algorithmSelect">
+                        <option value="quickSort" selected>QuickSort</option>
+                        <option value="mergeSort">MergeSort</option>
+                        <option value="bubbleSort">BubbleSort</option>
+                        <option value="heapSort">HeapSort</option>
+                    </select>
+
+                    <label for="vizSpeedRange" class="label">Animation Speed</label>
+                    <div class="speed-wrap">
+                        <input id="vizSpeedRange" type="range" min="1" max="100" value="50" />
+                        <span id="vizSpeedValue">50</span>
+                    </div>
+
+                    <div class="sound-controls">
+                        <label class="sound-toggle">
+                            <input id="soundEnabled" type="checkbox" checked />
+                            <span>Sound</span>
+                        </label>
+                        <label for="soundVolume" class="label">Volume</label>
+                        <div class="speed-wrap">
+                            <input id="soundVolume" type="range" min="0" max="100" value="35" />
+                            <span id="soundVolumeValue">35</span>
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <button id="vizRandomButton" type="button">Random</button>
+                        <button id="sortButton" type="button">Sort</button>
+                        <button id="vizPauseButton" type="button">Pause</button>
+                        <button id="vizResetButton" type="button">Reset</button>
+                        <button id="parallelSortButton" type="button">Sort In Parallel</button>
+                        <button id="parallelBenchmarkButton" type="button">Parallel vs Standard</button>
+                        <button id="testButton" type="button">Run Self Tests</button>
+                    </div>
+
+                    <p class="message"><strong>Current operation:</strong> <span id="vizOperationText">Idle</span></p>
+                    <p id="message" class="message" aria-live="polite"></p>
+                    <div id="result" class="result" aria-live="polite"></div>
+
+                    <div class="chart-block">
+                        <h3>Parallel vs Standard Chart</h3>
+                        <div id="parallelBenchmarkChart" class="benchmark-chart" aria-live="polite">
+                            <p class="placeholder">Run "Parallel vs Standard" to visualize chart data.</p>
+                        </div>
+                    </div>
+
+                    <div class="visualizer-canvas-wrap">
+                        <div id="vizBarContainer" class="bars"></div>
+                    </div>
+                </section>
+
+                <section id="benchmarkPanel" class="tool-card" aria-label="Benchmark tools">
+                    <h2>Benchmark</h2>
+                    <p class="hint">
+                        Compare <strong>QuickSort</strong> vs <strong>Array.sort()</strong> using random arrays.
+                    </p>
+
+                    <div class="benchmark-controls">
+                        <label for="runsInput" class="label">Runs per size</label>
+                        <input id="runsInput" type="number" min="1" max="100" value="20" />
+                        <button id="benchmarkButton" type="button">Run Benchmark</button>
+                    </div>
+
+                    <p id="benchmarkMessage" class="message" aria-live="polite"></p>
+
+                    <div class="table-wrap">
+                        <table id="benchmarkTable" class="benchmark-table" aria-live="polite">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Runs</th>
+                                    <th>QuickSort Avg (ms)</th>
+                                    <th>Array.sort Avg (ms)</th>
+                                    <th>Faster</th>
+                                    <th>Relative Speed</th>
+                                </tr>
+                            </thead>
+                            <tbody id="benchmarkTableBody">
+                                <tr>
+                                    <td colspan="6" class="placeholder">Click "Run Benchmark" to view results.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="chart-block">
+                        <h3>QuickSort vs Array.sort Chart</h3>
+                        <div id="benchmarkChart" class="benchmark-chart" aria-live="polite">
+                            <p class="placeholder">Run benchmark to visualize chart data.</p>
+                        </div>
+                    </div>
+
+                    <p id="benchmarkExplanation" class="benchmark-explanation"></p>
+                </section>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="sorting-algorithms.js"></script>
+    <script src="app.js"></script>
+    <script src="visualizer.js"></script>
+</body>
+
+</html>
