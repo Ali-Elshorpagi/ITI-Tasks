@@ -1,0 +1,180 @@
+C#
+C# supports OOP
+Marks: 5
+----------------------
+C#
+C# is platform dependent
+Marks: 5
+----------------------
+OOP
+Encapsulation hides data
+Marks: 5
+----------------------
+OOP
+Inheritance reduces code reuse
+Marks: 5
+----------------------
+.NET
+CLR manages memory
+Marks: 5
+----------------------
+.NET
+CTS stands for Common Type System
+Marks: 5
+----------------------
+C#
+Struct is reference type
+Marks: 5
+----------------------
+C#
+Interface contains implementation
+Marks: 5
+----------------------
+C#
+Abstract class can have constructors
+Marks: 5
+----------------------
+OOP
+Polymorphism allows many forms
+Marks: 5
+----------------------
+C#
+Main method must be static
+Marks: 5
+----------------------
+C#
+Garbage collector frees unmanaged memory
+Marks: 5
+----------------------
+.NET
+JIT compiles IL to machine code
+Marks: 5
+----------------------
+C#
+Delegate is type safe function pointer
+Marks: 5
+----------------------
+OOP
+Abstraction shows implementation details
+Marks: 5
+----------------------
+C#
+C# supports OOP
+Marks: 5
+----------------------
+C#
+C# is platform dependent
+Marks: 5
+----------------------
+OOP
+Encapsulation hides data
+Marks: 5
+----------------------
+OOP
+Inheritance reduces code reuse
+Marks: 5
+----------------------
+.NET
+CLR manages memory
+Marks: 5
+----------------------
+.NET
+CTS stands for Common Type System
+Marks: 5
+----------------------
+C#
+Struct is reference type
+Marks: 5
+----------------------
+C#
+Interface contains implementation
+Marks: 5
+----------------------
+C#
+Abstract class can have constructors
+Marks: 5
+----------------------
+OOP
+Polymorphism allows many forms
+Marks: 5
+----------------------
+C#
+Main method must be static
+Marks: 5
+----------------------
+C#
+Garbage collector frees unmanaged memory
+Marks: 5
+----------------------
+.NET
+JIT compiles IL to machine code
+Marks: 5
+----------------------
+C#
+Delegate is type safe function pointer
+Marks: 5
+----------------------
+OOP
+Abstraction shows implementation details
+Marks: 5
+----------------------
+C#
+C# supports OOP
+Marks: 5
+----------------------
+C#
+C# is platform dependent
+Marks: 5
+----------------------
+OOP
+Encapsulation hides data
+Marks: 5
+----------------------
+OOP
+Inheritance reduces code reuse
+Marks: 5
+----------------------
+.NET
+CLR manages memory
+Marks: 5
+----------------------
+.NET
+CTS stands for Common Type System
+Marks: 5
+----------------------
+C#
+Struct is reference type
+Marks: 5
+----------------------
+C#
+Interface contains implementation
+Marks: 5
+----------------------
+C#
+Abstract class can have constructors
+Marks: 5
+----------------------
+OOP
+Polymorphism allows many forms
+Marks: 5
+----------------------
+C#
+Main method must be static
+Marks: 5
+----------------------
+C#
+Garbage collector frees unmanaged memory
+Marks: 5
+----------------------
+.NET
+JIT compiles IL to machine code
+Marks: 5
+----------------------
+C#
+Delegate is type safe function pointer
+Marks: 5
+----------------------
+OOP
+Abstraction shows implementation details
+Marks: 5
+----------------------

@@ -1,0 +1,15 @@
+﻿C#|C# supports OOP|5|true
+C#|C# is platform dependent|5|false
+OOP|Encapsulation hides data|5|true
+OOP|Inheritance reduces code reuse|5|false
+.NET|CLR manages memory|5|true
+.NET|CTS stands for Common Type System|5|true
+C#|Struct is reference type|5|false
+C#|Interface contains implementation|5|false
+C#|Abstract class can have constructors|5|true
+OOP|Polymorphism allows many forms|5|true
+C#|Main method must be static|5|true
+C#|Garbage collector frees unmanaged memory|5|false
+.NET|JIT compiles IL to machine code|5|true
+C#|Delegate is type safe function pointer|5|true
+OOP|Abstraction shows implementation details|5|false

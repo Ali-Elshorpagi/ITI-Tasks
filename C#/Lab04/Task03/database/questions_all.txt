@@ -1,0 +1,15 @@
+﻿OOP|Select OOP pillars|15|Encapsulation|Inheritance|Polymorphism|Encapsulation,Inheritance,Polymorphism
+C#|Select value types|10|int|string|bool|int,bool
+.NET|Select CLR responsibilities|15|Memory management|Exception handling|UI|Memory management,Exception handling
+C#|Select access modifiers|10|public|private|sealed|public,private
+OOP|Select abstraction examples|10|interface|abstract class|variable|interface,abstract class
+C#|Select reference types|10|string|class|int|string,class
+.NET|Select compilation stages|15|IL|JIT|Machine code|IL,JIT,Machine code
+C#|Select loop types|10|for|while|if|for,while
+C#|Select keywords|10|static|class|value|static,class
+OOP|Select inheritance types|10|single|multiple|hybrid|single,hybrid
+C#|Select collection types|10|List|Array|Dictionary|List,Array,Dictionary
+C#|Select exception blocks|10|try|catch|throw|try,catch
+.NET|Select managed features|10|Garbage Collection|Security|Pointer arithmetic|Garbage Collection,Security
+C#|Select method modifiers|10|virtual|override|private|virtual,override
+C#|Select memory types|10|stack|heap|disk|stack,heap

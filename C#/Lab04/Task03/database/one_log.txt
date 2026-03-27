@@ -1,0 +1,240 @@
+CLR
+What does CLR stand for?
+Marks: 10
+----------------------
+OOP
+Which is NOT OOP pillar?
+Marks: 10
+----------------------
+C#
+Which keyword creates object?
+Marks: 10
+----------------------
+C#
+Which is value type?
+Marks: 10
+----------------------
+.NET
+Which compiles IL?
+Marks: 10
+----------------------
+C#
+Which supports multiple inheritance?
+Marks: 10
+----------------------
+C#
+Entry point of program?
+Marks: 10
+----------------------
+C#
+Which access modifier is most restricted?
+Marks: 10
+----------------------
+C#
+Which keyword prevents inheritance?
+Marks: 10
+----------------------
+C#
+Which is reference type?
+Marks: 10
+----------------------
+.NET
+Which stores metadata?
+Marks: 10
+----------------------
+C#
+Which keyword creates constant?
+Marks: 10
+----------------------
+C#
+Which collection stores key-value?
+Marks: 10
+----------------------
+C#
+Which allows method overriding?
+Marks: 10
+----------------------
+C#
+Which executes first?
+Marks: 10
+----------------------
+C#
+Which supports LINQ?
+Marks: 10
+----------------------
+C#
+Which prevents method override?
+Marks: 10
+----------------------
+C#
+Which keyword handles exception?
+Marks: 10
+----------------------
+C#
+Which converts value type to object?
+Marks: 10
+----------------------
+C#
+Which converts object to value type?
+Marks: 10
+----------------------
+CLR
+What does CLR stand for?
+Marks: 10
+----------------------
+OOP
+Which is NOT OOP pillar?
+Marks: 10
+----------------------
+C#
+Which keyword creates object?
+Marks: 10
+----------------------
+C#
+Which is value type?
+Marks: 10
+----------------------
+.NET
+Which compiles IL?
+Marks: 10
+----------------------
+C#
+Which supports multiple inheritance?
+Marks: 10
+----------------------
+C#
+Entry point of program?
+Marks: 10
+----------------------
+C#
+Which access modifier is most restricted?
+Marks: 10
+----------------------
+C#
+Which keyword prevents inheritance?
+Marks: 10
+----------------------
+C#
+Which is reference type?
+Marks: 10
+----------------------
+.NET
+Which stores metadata?
+Marks: 10
+----------------------
+C#
+Which keyword creates constant?
+Marks: 10
+----------------------
+C#
+Which collection stores key-value?
+Marks: 10
+----------------------
+C#
+Which allows method overriding?
+Marks: 10
+----------------------
+C#
+Which executes first?
+Marks: 10
+----------------------
+C#
+Which supports LINQ?
+Marks: 10
+----------------------
+C#
+Which prevents method override?
+Marks: 10
+----------------------
+C#
+Which keyword handles exception?
+Marks: 10
+----------------------
+C#
+Which converts value type to object?
+Marks: 10
+----------------------
+C#
+Which converts object to value type?
+Marks: 10
+----------------------
+CLR
+What does CLR stand for?
+Marks: 10
+----------------------
+OOP
+Which is NOT OOP pillar?
+Marks: 10
+----------------------
+C#
+Which keyword creates object?
+Marks: 10
+----------------------
+C#
+Which is value type?
+Marks: 10
+----------------------
+.NET
+Which compiles IL?
+Marks: 10
+----------------------
+C#
+Which supports multiple inheritance?
+Marks: 10
+----------------------
+C#
+Entry point of program?
+Marks: 10
+----------------------
+C#
+Which access modifier is most restricted?
+Marks: 10
+----------------------
+C#
+Which keyword prevents inheritance?
+Marks: 10
+----------------------
+C#
+Which is reference type?
+Marks: 10
+----------------------
+.NET
+Which stores metadata?
+Marks: 10
+----------------------
+C#
+Which keyword creates constant?
+Marks: 10
+----------------------
+C#
+Which collection stores key-value?
+Marks: 10
+----------------------
+C#
+Which allows method overriding?
+Marks: 10
+----------------------
+C#
+Which executes first?
+Marks: 10
+----------------------
+C#
+Which supports LINQ?
+Marks: 10
+----------------------
+C#
+Which prevents method override?
+Marks: 10
+----------------------
+C#
+Which keyword handles exception?
+Marks: 10
+----------------------
+C#
+Which converts value type to object?
+Marks: 10
+----------------------
+C#
+Which converts object to value type?
+Marks: 10
+----------------------

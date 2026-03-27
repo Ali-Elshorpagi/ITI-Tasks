@@ -1,0 +1,180 @@
+OOP
+Select OOP pillars
+Marks: 15
+----------------------
+C#
+Select value types
+Marks: 10
+----------------------
+.NET
+Select CLR responsibilities
+Marks: 15
+----------------------
+C#
+Select access modifiers
+Marks: 10
+----------------------
+OOP
+Select abstraction examples
+Marks: 10
+----------------------
+C#
+Select reference types
+Marks: 10
+----------------------
+.NET
+Select compilation stages
+Marks: 15
+----------------------
+C#
+Select loop types
+Marks: 10
+----------------------
+C#
+Select keywords
+Marks: 10
+----------------------
+OOP
+Select inheritance types
+Marks: 10
+----------------------
+C#
+Select collection types
+Marks: 10
+----------------------
+C#
+Select exception blocks
+Marks: 10
+----------------------
+.NET
+Select managed features
+Marks: 10
+----------------------
+C#
+Select method modifiers
+Marks: 10
+----------------------
+C#
+Select memory types
+Marks: 10
+----------------------
+OOP
+Select OOP pillars
+Marks: 15
+----------------------
+C#
+Select value types
+Marks: 10
+----------------------
+.NET
+Select CLR responsibilities
+Marks: 15
+----------------------
+C#
+Select access modifiers
+Marks: 10
+----------------------
+OOP
+Select abstraction examples
+Marks: 10
+----------------------
+C#
+Select reference types
+Marks: 10
+----------------------
+.NET
+Select compilation stages
+Marks: 15
+----------------------
+C#
+Select loop types
+Marks: 10
+----------------------
+C#
+Select keywords
+Marks: 10
+----------------------
+OOP
+Select inheritance types
+Marks: 10
+----------------------
+C#
+Select collection types
+Marks: 10
+----------------------
+C#
+Select exception blocks
+Marks: 10
+----------------------
+.NET
+Select managed features
+Marks: 10
+----------------------
+C#
+Select method modifiers
+Marks: 10
+----------------------
+C#
+Select memory types
+Marks: 10
+----------------------
+OOP
+Select OOP pillars
+Marks: 15
+----------------------
+C#
+Select value types
+Marks: 10
+----------------------
+.NET
+Select CLR responsibilities
+Marks: 15
+----------------------
+C#
+Select access modifiers
+Marks: 10
+----------------------
+OOP
+Select abstraction examples
+Marks: 10
+----------------------
+C#
+Select reference types
+Marks: 10
+----------------------
+.NET
+Select compilation stages
+Marks: 15
+----------------------
+C#
+Select loop types
+Marks: 10
+----------------------
+C#
+Select keywords
+Marks: 10
+----------------------
+OOP
+Select inheritance types
+Marks: 10
+----------------------
+C#
+Select collection types
+Marks: 10
+----------------------
+C#
+Select exception blocks
+Marks: 10
+----------------------
+.NET
+Select managed features
+Marks: 10
+----------------------
+C#
+Select method modifiers
+Marks: 10
+----------------------
+C#
+Select memory types
+Marks: 10
+----------------------

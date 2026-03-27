@@ -1,0 +1,20 @@
+﻿CLR|What does CLR stand for?|10|Common Language Runtime|Compiler|Library|Common Language Runtime
+OOP|Which is NOT OOP pillar?|10|Encapsulation|Inheritance|Compilation|Compilation
+C#|Which keyword creates object?|10|new|create|make|new
+C#|Which is value type?|10|int|string|object|int
+.NET|Which compiles IL?|10|JIT|CLR|CTS|JIT
+C#|Which supports multiple inheritance?|10|Class|Interface|Struct|Interface
+C#|Entry point of program?|10|Main|Start|Run|Main
+C#|Which access modifier is most restricted?|10|public|private|protected|private
+C#|Which keyword prevents inheritance?|10|sealed|static|readonly|sealed
+C#|Which is reference type?|10|int|string|double|string
+.NET|Which stores metadata?|10|CLR|Assembly|JIT|Assembly
+C#|Which keyword creates constant?|10|const|readonly|static|const
+C#|Which collection stores key-value?|10|List|Array|Dictionary|Dictionary
+C#|Which allows method overriding?|10|virtual|static|sealed|virtual
+C#|Which executes first?|10|static constructor|instance constructor|finalizer|static constructor
+C#|Which supports LINQ?|10|Array|List|Both|Both
+C#|Which prevents method override?|10|sealed|virtual|override|sealed
+C#|Which keyword handles exception?|10|try|catch|Both|Both
+C#|Which converts value type to object?|10|boxing|casting|parsing|boxing
+C#|Which converts object to value type?|10|unboxing|casting|parsing|unboxing
