@@ -1,0 +1,1445 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2026 8:30:42 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-CBFLQSN"
+  DTS:CreatorName="DESKTOP-CBFLQSN\sukuna"
+  DTS:DTSID="{51D1B680-317D-4645-8596-DD7108B45648}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{BD688CAD-EA38-408B-95D7-CE134204E66C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.ITI]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4DA5F5CF-D378-49F4-B34A-41184C2B555D}"
+      DTS:ObjectName="(localdb)\MSSQLLocalDB.ITI">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ITI;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{4DA5F5CF-D378-49F4-B34A-41184C2B555D}(localdb)\MSSQLLocalDB.ITI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.TestDb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EB69515D-7EEC-44F2-BC14-C6AB0FF9147A}"
+      DTS:ObjectName="(localdb)\MSSQLLocalDB.TestDb">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TestDb;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{EB69515D-7EEC-44F2-BC14-C6AB0FF9147A}(localdb)\MSSQLLocalDB.TestDb;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Backup Test DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6A445E7C-6C7E-47C7-822A-256C1A05C2BA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Backup Test DB"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EB69515D-7EEC-44F2-BC14-C6AB0FF9147A}"
+          SQLTask:SqlStatementSource="BACKUP DATABASE TestDb&#xA;TO DISK = 'E:\ITI\BI\Day 01\Test.bak'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Student Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FFB2C20B-EE9C-443F-BB53-6C4E4FF8AA03}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Student Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{EB69515D-7EEC-44F2-BC14-C6AB0FF9147A}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('Student','U') IS NOT NULL&#xA;DELETE FROM Student" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Script Task"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{0C6B5B61-0B05-487B-83FF-E347E1B37CCC}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Script Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_b698f7f4141942bea63cf8736e85bfbd"
+          VSTAMajorVersion="17"
+          VSTAMinorVersion="0"
+          Language="CSharp">
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Settings.get_Default():ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Sett" +
+    "ings")]
+
+namespace ST_b698f7f4141942bea63cf8736e85bfbd.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_b698f7f4141942bea63cf8736e85bfbd
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+            // TODO: Add your code here
+            MessageBox.Show("error occurred");
+		}
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_b698f7f4141942bea63cf8736e85bfbd.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29C0C7AE-3B2A-4F11-8197-7AEEDB099377}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_b698f7f4141942bea63cf8736e85bfbd</RootNamespace>
+    <AssemblyName>ST_b698f7f4141942bea63cf8736e85bfbd</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+         <Generator>ResXFileCodeGenerator</Generator>
+         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+             <AutoGen>True</AutoGen>
+         <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+         <Generator>SettingsSingleFileGenerator</Generator>
+         <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+         <AutoGen>True</AutoGen>
+         <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+         <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptTask"
+                           HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}"
+                           ApplicationType="usd"
+                           Language="cs"
+                           TemplatesPath=""
+                           DebugInfoCommandLine=""
+                           DebugInfoWorkingDir=""
+                           IconImageList=""/>
+        <Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex="">
+        </Host>
+        <ProjectClient>
+            <HostIdentifier>SSIS_ST170</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:Language>msBuild</msb:Language>
+    <msb:CodeName>ST_b698f7f4141942bea63cf8736e85bfbd</msb:CodeName>
+    <msb:DisplayName>ST_b698f7f4141942bea63cf8736e85bfbd</msb:DisplayName>
+    <msb:ProjectId>{2E410E14-638B-4325-B1E3-F1EA4E8EF97D}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_b698f7f4141942bea63cf8736e85bfbd.csproj" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b698f7f4141942bea63cf8736e85bfbd")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b698f7f4141942bea63cf8736e85bfbd")]
+[assembly: AssemblyCopyright("Copyright @  2026")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_b698f7f4141942bea63cf8736e85bfbd.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_b698f7f4141942bea63cf8736e85bfbd.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_b698f7f4141942bea63cf8736e85bfbd.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAEyDpmkAAAAAAAAAAOAAIiALATAAAA4AAAAIAAAAAAAAtiwA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGQsAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAvAwAAAAgAAAADgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAQAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAFgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACY
+LAAAAAAAAEgAAAACAAUAxCAAAOgKAAABAAAAAAAAAKwrAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAADJyAQAAcCgQAAAKJioeAigRAAAKKh4CKBIAAAoqrn4BAAAE
+LR5yHwAAcNADAAACKBMAAApvFAAACnMVAAAKgAEAAAR+AQAABCoafgIAAAQqHgKAAgAABCoafgMA
+AAQqHgIoFgAACioucwgAAAaAAwAABCoAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBs
+AAAAlAMAACN+AAAABAAA9AQAACNTdHJpbmdzAAAAAPQIAACUAAAAI1VTAIgJAAAQAAAAI0dVSUQA
+AACYCQAAUAEAACNCbG9iAAAAAAAAAAIAAAFXHaABCQMAAAD6ATMAFgAAAQAAABwAAAAFAAAABgAA
+AAkAAAABAAAAFgAAAAIAAAAQAAAAAgAAAAMAAAAEAAAAAQAAAAQAAAABAAAAAQAAAAAACAMBAAAA
+AAAGAN0BzwMGAGwCzwMGACkBvAMPAEMEAAAGAFYBfQMGAMABfQMGAKEBfQMGAFMCfQMGAP0BfQMG
+ABYCfQMGAG0BfQMGAIgBkAIKADECyQIKAKgAyQIGADcDMAMGAAwBvAMGALUEMAMGAJ8D7wMGAI8D
+aAMOANwA8gIOAD0B8gIOAMQAUwMGAPEAzwMSANoEigQSAMgEigQGAHMAMAMGAE8AMAMGAOkEfQMA
+AAAAAQAAAAAAAQABAAEAEABIAxsAOQABAAEAAAAQAPYDUgRFAAEAAwAAARAAgQRSBFkAAwAHAAMB
+AACnBAAAPQAEAAoAEQA8A1AAEQCYAFQAEQA/AFgABgYKAFwAVoCfBF8AVoB4AF8AUCAAAAAAhgBO
+AwYAAQBdIAAAAACGGK8DBgABAGUgAAAAAIMYrwMGAAEAbSAAAAAAkwibA2MAAQCZIAAAAACTCIAA
+aAABAKAgAAAAAJMIjABtAAEAqCAAAAAAlgi8BHMAAgCvIAAAAACGGK8DBgACALcgAAAAAJEYtQN4
+AAIAAAABAIoCCQCvAwEAEQCvAwYAGQCvAwoAKQCvAxAAMQCvAxAAOQCvAxAAQQCvAxAASQCvAxAA
+UQCvAxAAWQCvAxAAYQCvAxAAaQCvAwYAgQCvAwYAqQCvAxUAuQCvAwYAwQDVBBsAcQCvAwYAiQCv
+AwYA0QBhACEA0QDlBCgAkQCvAy0AsQCvAwYACAAUAEYACAAYAEsAKQBzALMALgALAIsALgATAJQA
+LgAbALMALgAjALwALgArAOUALgAzAOUALgA7AOUALgBDALwALgBLAOsALgBTAOUALgBbAAIBQwBj
+AEsASQBzALMAYQB7AEsAYwBrAEsAAwABAAQAAwAAAJ8DfAAAAKAAgQAAAMAEhgACAAQAAwACAAUA
+BQABAAYABQACAAcABwAEgAAAAQAAAFYldj0AAAAAAAAbAAAABAAAAAAAAAAAAAAANAASAAAAAAAR
+AAAAAAAAAAAAAAA9AKoCAAAAAAQAAAAAAAAAAAAAADQAMAMAAAAABAAAAAAAAAAAAAAANACKBAAA
+AAAAAAAAAQAAAAAEAAAFAAIAAAAAAAA8TW9kdWxlPgB2YWx1ZV9fAG1zY29ybGliAFNUX2I2OThm
+N2Y0MTQxOTQyYmVhNjNjZjg3MzZlODViZmJkAGRlZmF1bHRJbnN0YW5jZQBSdW50aW1lVHlwZUhh
+bmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBUeXBlAEZhaWx1cmUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1
+cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBBcHBsaWNhdGlv
+blNldHRpbmdzQmFzZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJp
+YnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRp
+dG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFk
+ZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJh
+dGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVs
+YXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJp
+Z2h0QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNv
+bXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAdmFsdWUAU3lzdGVt
+LlJ1bnRpbWUuVmVyc2lvbmluZwBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9z
+b2Z0LlNxbFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBTeXN0ZW0uQ29tcG9uZW50TW9kZWwA
+U1RfYjY5OGY3ZjQxNDE5NDJiZWE2M2NmODczNmU4NWJmYmQuZGxsAFN5c3RlbQBFbnVtAHJlc291
+cmNlTWFuAFNjcmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRp
+b24AU3lzdGVtLlJlZmxlY3Rpb24AQ3VsdHVyZUluZm8AZ2V0X1Jlc291cmNlTWFuYWdlcgAuY3Rv
+cgAuY2N0b3IAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2Vydmlj
+ZXMAU3lzdGVtLlJlc291cmNlcwBTVF9iNjk4ZjdmNDE0MTk0MmJlYTYzY2Y4NzM2ZTg1YmZiZC5Q
+cm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU1RfYjY5OGY3ZjQx
+NDE5NDJiZWE2M2NmODczNmU4NWJmYmQuUHJvcGVydGllcwBTZXR0aW5ncwBTeXN0ZW0uV2luZG93
+cy5Gb3JtcwBTdWNjZXNzAFNjcmlwdFJlc3VsdHMAT2JqZWN0AGdldF9EZWZhdWx0AERpYWxvZ1Jl
+c3VsdABTaG93AE1lc3NhZ2VCb3gAZ2V0X0Fzc2VtYmx5AAAAAB1lAHIAcgBvAHIAIABvAGMAYwB1
+AHIAcgBlAGQAAHFTAFQAXwBiADYAOQA4AGYANwBmADQAMQA0ADEAOQA0ADIAYgBlAGEANgAzAGMA
+ZgA4ADcAMwA2AGUAOAA1AGIAZgBiAGQALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1
+AHIAYwBlAHMAAAAAALGHvNnCFcpDtVP5rMN+Jw4ABCABAQgDIAABBSABARERBCABAQ4FIAEBEVEF
+AAERZQ4GAAESaRFtBCAAEnEGIAIBDhJxCLd6XFYZNOCJCImEXc2AgMyRBAAAAAAEAQAAAAMGEkkD
+BhJNAwYSEAIGCAMGERQEAAASSQQAABJNBQABARJNBAAAEhADAAABBAgAEkkECAASTQQIABIQCAEA
+CAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF9iNjk4
+ZjdmNDE0MTk0MmJlYTYzY2Y4NzM2ZTg1YmZiZAAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDI2
+AABNAQAcLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcuMgEAVA4URnJhbWV3b3JrRGlzcGxheU5h
+bWUULk5FVCBGcmFtZXdvcmsgNC43LjK0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMu
+UmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJh
+bCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRp
+bWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAjCwAAAAAAAAAAAAApiwAAAAgAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAJgsAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwA
+AAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAA
+AAAASAAAAFhAAAAaBAAAAAAAAAAAAAAaBDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYA
+TwAAAAAAvQTv/gAAAQAAAAEAdj1WJQAAAQB2PVYlPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAA
+AEQAAAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkA
+bwBuAAAAAAAAALAEegMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAVgMAAAEAMAAw
+ADAAMAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAA
+YQBuAHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBu
+AAAAAABTAFQAXwBiADYAOQA4AGYANwBmADQAMQA0ADEAOQA0ADIAYgBlAGEANgAzAGMAZgA4ADcA
+MwA2AGUAOAA1AGIAZgBiAGQAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAw
+AC4AOQA1ADUAOAAuADEANQA3ADMANAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUA
+AABTAFQAXwBiADYAOQA4AGYANwBmADQAMQA0ADEAOQA0ADIAYgBlAGEANgAzAGMAZgA4ADcAMwA2
+AGUAOAA1AGIAZgBiAGQALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgA
+dAAAAEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIANgAAACoAAQABAEwAZQBnAGEAbABU
+AHIAYQBkAGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUA
+bgBhAG0AZQAAAFMAVABfAGIANgA5ADgAZgA3AGYANAAxADQAMQA5ADQAMgBiAGUAYQA2ADMAYwBm
+ADgANwAzADYAZQA4ADUAYgBmAGIAZAAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEA
+bQBlAAAAAABTAFQAXwBiADYAOQA4AGYANwBmADQAMQA0ADEAOQA0ADIAYgBlAGEANgAzAGMAZgA4
+ADcAMwA2AGUAOAA1AGIAZgBiAGQAAABCAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4A
+AAAxAC4AMAAuADkANQA1ADgALgAxADUANwAzADQAAAAAAEYADwABAEEAcwBzAGUAbQBiAGwAeQAg
+AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADkANQA1ADgALgAxADUANwAzADQAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAMAAAAuDwA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transfer Student Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A70FF3BF-BF5E-496F-A239-741F8FBCE933}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transfer Student Data">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Transfer Student Data\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input].Columns[St_Fname]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="St_Fname"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Fname]" />
+                    <inputColumn
+                      refId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input].Columns[St_Lname]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="St_Lname"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Lname]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Output].Columns[Full_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="61"
+                      lineageId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Output].Columns[Full_Name]"
+                      name="Full_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Fname]} + " " + #{Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Lname]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">St_Fname + " " + St_Lname</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transfer Student Data\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Student]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transfer Student Data\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.TestDb]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.TestDb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[St_Id]"
+                      cachedDataType="i4"
+                      cachedName="St_Id"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Id]"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Id]" />
+                    <inputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[St_Fname]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="St_Fname"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Fname]"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Fname]" />
+                    <inputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[St_Lname]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="St_Lname"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Lname]"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Lname]" />
+                    <inputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[St_Address]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="St_Address"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Address]"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Address]" />
+                    <inputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Full_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="61"
+                      cachedName="Full_Name"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_Name]"
+                      lineageId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Output].Columns[Full_Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Id]"
+                      dataType="i4"
+                      name="St_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Fname]"
+                      dataType="wstr"
+                      length="50"
+                      name="St_Fname" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Lname]"
+                      dataType="wstr"
+                      length="10"
+                      name="St_Lname" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[St_Address]"
+                      dataType="wstr"
+                      length="100"
+                      name="St_Address" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_Name]"
+                      dataType="wstr"
+                      length="61"
+                      name="Full_Name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transfer Student Data\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transfer Student Data\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Course]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT St_Id, St_Fname, St_Lname, St_Address
+FROM Student</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transfer Student Data\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.ITI]"
+                  connectionManagerRefId="Package.ConnectionManagers[(localdb)\MSSQLLocalDB.ITI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Id]"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Id]"
+                      name="St_Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Fname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Fname]"
+                      length="50"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Fname]"
+                      name="St_Fname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Lname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Lname]"
+                      length="10"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Lname]"
+                      name="St_Lname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Address]"
+                      length="100"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[St_Address]"
+                      name="St_Address"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Id]"
+                      dataType="i4"
+                      name="St_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Fname]"
+                      dataType="wstr"
+                      length="50"
+                      name="St_Fname" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Lname]"
+                      dataType="wstr"
+                      length="10"
+                      name="St_Lname" />
+                    <externalMetadataColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[St_Address]"
+                      dataType="wstr"
+                      length="100"
+                      name="St_Address" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Id]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Id]"
+                      name="St_Id" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Fname]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Fname]"
+                      name="St_Fname" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Lname]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Lname]"
+                      name="St_Lname" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Address]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[St_Address]"
+                      name="St_Address" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Transfer Student Data.Paths[Derived Column Output]"
+              endId="Package\Transfer Student Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Transfer Student Data\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Transfer Student Data.Paths[OLE DB Source Output]"
+              endId="Package\Transfer Student Data\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Transfer Student Data\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4F02ED3A-E02E-40D9-A5CF-3279C16F6A81}"
+      DTS:From="Package\Backup Test DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Transfer Student Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AE622D4-F2CA-4308-9BA2-6D6E419A8653}"
+      DTS:From="Package\Transfer Student Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Script Task"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7E37DA10-9E80-4265-95CA-2D1315DCDC06}"
+      DTS:From="Package\Delete Student Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Backup Test DB" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{1C4CC5C8-68C2-49FD-85E8-BDAD60DD7B24}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{C95ACBB5-3903-4A73-8E21-C90996FEBFCE}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Delete Student Data"
+          TopLeft="287,78" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Backup Test DB"
+          TopLeft="556,151" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Transfer Student Data"
+          TopLeft="336.5,246.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="632.5,193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-204.5,53.5"
+              Start="0,0"
+              End="-204.5,46">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.75"
+                    Point2="0,26.75"
+                    Point3="-4,26.75" />
+                  <mssgle:LineSegment
+                    End="-200.5,26.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-200.5,26.75"
+                    Point2="-204.5,26.75"
+                    Point3="-204.5,30.75" />
+                  <mssgle:LineSegment
+                    End="-204.5,46" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Script Task"
+          TopLeft="280,358" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="428,288.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.5,69.5"
+              Start="0,0"
+              End="-82.5,62">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.75"
+                    Point2="0,34.75"
+                    Point3="-4,34.75" />
+                  <mssgle:LineSegment
+                    End="-78.5,34.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.5,34.75"
+                    Point2="-82.5,34.75"
+                    Point3="-82.5,38.75" />
+                  <mssgle:LineSegment
+                    End="-82.5,62" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-56.49134765625,39.75,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="374,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="258.5,31"
+              Start="0,0"
+              End="258.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="254.5,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="254.5,15.5"
+                    Point2="258.5,15.5"
+                    Point3="258.5,19.5" />
+                  <mssgle:LineSegment
+                    End="258.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Transfer Student Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Transfer Student Data\OLE DB Source"
+          TopLeft="472,57" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Transfer Student Data\Derived Column"
+          TopLeft="482,197" />
+        <EdgeLayout
+          Id="Package\Transfer Student Data.Paths[OLE DB Source Output]"
+          TopLeft="547,99">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,98"
+              Start="0,0"
+              End="12,90.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45"
+                    Point2="0,49"
+                    Point3="4,49" />
+                  <mssgle:LineSegment
+                    End="8,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,49"
+                    Point2="12,49"
+                    Point3="12,53" />
+                  <mssgle:LineSegment
+                    End="12,90.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Transfer Student Data\OLE DB Destination"
+          TopLeft="739,312" />
+        <EdgeLayout
+          Id="Package\Transfer Student Data.Paths[Derived Column Output]"
+          TopLeft="559,239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="265.5,73"
+              Start="0,0"
+              End="265.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="4,36.5" />
+                  <mssgle:LineSegment
+                    End="261.5,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="261.5,36.5"
+                    Point2="265.5,36.5"
+                    Point3="265.5,40.5" />
+                  <mssgle:LineSegment
+                    End="265.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transfer Student Data\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transfer Student Data\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
