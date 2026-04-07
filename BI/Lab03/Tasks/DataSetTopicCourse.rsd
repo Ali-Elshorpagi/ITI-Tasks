@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSourceITI</DataSourceReference>
+      <CommandText>SELECT t.Top_Id, t.Top_Name, c.Crs_Name
+FROM Topic t JOIN Course c ON c.Top_Id = t.Top_Id
+ORDER BY t.Top_Name, c.Crs_Name;</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Top_Id">
+        <DataField>Top_Id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Top_Name">
+        <DataField>Top_Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Crs_Name">
+        <DataField>Crs_Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
