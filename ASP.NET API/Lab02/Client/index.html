@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 02</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #status {
+            margin-top: 12px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Students</h1>
+    <button id="loadStudentsBtn">Load Students</button>
+    <div id="status"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Supervisor</th>
+            </tr>
+        </thead>
+        <tbody id="studentsBody"></tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
