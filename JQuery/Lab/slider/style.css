@@ -1,0 +1,52 @@
+body {
+    background-color: darkgray;
+}
+
+.container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.active {
+    display: flex;
+}
+
+.images img {
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.slider-frame {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.slider-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: black;
+    cursor: pointer;
+}
+
+.prev {
+    left: -50px;
+}
+
+.next {
+    right: -50px;
+}
