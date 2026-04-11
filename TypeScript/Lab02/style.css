@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    margin-top: 80px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: lightblue;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: darkblue;
+    margin-bottom: 10px;
+}
+
+#counter {
+    font-size: 50px;
+    color: green;
+    margin: 10px 0;
+}
+
+button {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: steelblue;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(29, 29, 129);
+}
