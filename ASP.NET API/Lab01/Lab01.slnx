@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Task/Task.csproj" />
+  <Project Path="WinFormsApp/WinFormsApp.csproj" />
+</Solution>
