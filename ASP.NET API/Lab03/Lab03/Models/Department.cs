@@ -1,0 +1,29 @@
+﻿#nullable disable
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Lab03.Models
+{
+    [Table("Department")]
+    public partial class Department
+    {
+        [Key]
+        [Column("Dept_Id")]
+        public int DeptId { get; set; }
+        [Column("Dept_Name")]
+        [StringLength(50)]
+        public string DeptName { get; set; }
+        [Column("Dept_Desc")]
+        [StringLength(100)]
+        public string DeptDesc { get; set; }
+        [Column("Dept_Location")]
+        [StringLength(50)]
+        public string DeptLocation { get; set; }
+        [Column("Dept_Manager")]
+        public int? DeptManager { get; set; }
+        [Column("Manager_hiredate")]
+        public DateOnly? ManagerHiredate { get; set; }
+        [InverseProperty("Dept")]
+        public virtual ICollection<Student> Students { get; set; } = new List<Student>();
+    }
+}
