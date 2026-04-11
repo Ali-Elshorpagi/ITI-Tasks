@@ -1,25 +1,27 @@
-# Lab04 - Identity, JWT & RAG AI Integration
+# Lab04 - ASP.NET Core Identity & JWT Authentication
 
 ## Description
 
-This lab is an advanced enterprise-level realization showcasing how modern **ASP.NET Core Web API** can handle complex Auth scenarios and integrate seamlessly with cutting-edge **Generative AI** flows. Specifically, it establishes an end-to-end framework for **Authentication**, securely routing calls, and constructing an extensive **Retrieval-Augmented Generation (RAG)** pipeline.
+This lab focuses on implementing robust stateless authentication and authorization mechanisms in an **ASP.NET Core Web API** utilizing **ASP.NET Core Identity** alongside **JSON Web Tokens (JWT)**.
+
+It demonstrates how to configure endpoints to require valid authorization, safely register and log in users, map credentials to tokens, and segregate operations via standard RESTful routes.
 
 ### Key Concepts & Implementations
 
-- **ASP.NET Core Identity & JWT Authentication**: 
-  - Extending default tables with `IdentityRole` inside `ITIContext`.
-  - Crafting an `AccountController` equipped with `Register` and `Login` functionalities via DTO mapping.
-  - Generating standard encrypted Bearer JSON Web Tokens (JWT) acting as an exchange passport for authorizing HTTP calls across subsequent requests securely across endpoints.
-- **Enterprise-ready RAG Pipeline Infrastructure**: 
-  - Designing a robust multi-pass process combining `IDocumentIngestionService` supporting parsing complex `.txt` and proprietary structured files like `.pdf`.
-  - Implementing dedicated `TextExtractors` and specialized formatting `TextPreprocessors`.
-  - Managing large tokens efficiently via strategies like `SlidingWindowChunkingService` parsing raw massive context logs.
-- **OpenAI Interfacing & Vector Workloads**: 
-  - Structuring highly available connections to Large Language Models (`ILlmService` -> `OpenAiLlmService`) via injected typed HTTP configurations bound directly from `appsettings.json` via the Options Pattern (`IOptions<OpenAiOptions>`).
-  - Leveraging specific `EmbeddingService` models to map documents to embedding vectors which are subsequently pushed into a persistent `VectorStore` structure allowing semantic search querying inside the `RagQueryController`.
-- **Background Multi-threading Tasks Workers**: 
-  - Ensuring the application scales efficiently without blocking web UI requests. Orchestrating extremely CPU/Network-heavy operations (e.g., PDF parsing, hitting external AI endpoints, writing vector chunks) utilizing concurrent worker pipelines. 
-  - Managing AI queues via the `DocumentIngestionQueue` working hand-in-hand with persistent .NET `IHostedService` frameworks (`DocumentIngestionWorker`) constantly probing background duties invisibly.
+- **ASP.NET Core Identity & EF Core**: 
+  - Subclassing default identity models alongside normal application entities inside `ITIContext`.
+  - Managing seamless, secure user profiles locally using Entity Framework Core with SQL Server.
+- **JWT Authentication via AccountController**: 
+  - Utilizing an `AccountController` equipped with `Register` and `Login` functionalities via Data Transfer Objects (`AddStudentDTO`, `LoginDataDTo`).
+  - Generating and serving encrypted Bearer JSON Web Tokens (JWT) which strictly authorize the caller to access protected HTTP endpoints across subsequent requests.
+- **Repository Pattern abstraction**: 
+  - Injecting database transactions through `IAccounttRepository` and `IStudentRepository`, ensuring separation of concerns between Controllers and the Data Access Layer.
+- **Data Transfer Objects (DTOs)**: 
+  - Structuring external communication with robust formats (`AddStudentDTO`, `UpdateStudentDTO`) that cleanly decouple client input/presentation from the database structure.
 
 ### Directory Structure
-- **Lab04**: A highly orchestrated codebase heavily using DI (Dependency Injection), separated into `Controllers` (`Account`, `RagDocuments`, `RagQuery`), Data Configurations/Migrations, Options Pattern implementations, comprehensive RAG pipeline services, and Abstract Repositories logic making this an excellent benchmark for heavy monolithic setups mimicking microservice AI routines.
+- **Controllers**: Responsible for endpoint exposure (`AccountController` for auth, `StudentController` for standard generic routing).
+- **Models**: Defines raw DB tables (`Student`) and the foundational `ITIContext` configurations.
+- **DTOs**: Payload packaging instances transferring validation structures safely.
+- **Repositories**: Implementing Entity Framework Core mapping details encapsulating transactions away from the top-level API handlers.
+- **Migrations**: Keeping track of local database evolutionary schema changes.
