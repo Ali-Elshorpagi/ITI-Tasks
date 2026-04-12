@@ -1,0 +1,359 @@
+﻿@{
+    ViewData["Title"] = "RAG Demo";
+}
+
+<div class="rag-app-shell">
+    <section class="rag-hero">
+        <div>
+            <p class="rag-eyebrow">Retrieval-Augmented Generation</p>
+            <h1 class="rag-title">RAG Pipeline Demo</h1>
+            <p class="rag-subtitle">Upload a document, index it, and chat in a Claude-style thread with MongoDB vector storage.</p>
+        </div>
+        <div class="rag-meta">
+            <span class="rag-chip">Chunking: <strong>@ViewData["ChunkStrategy"]</strong></span>
+            <span class="rag-chip">Size: <strong>@ViewData["ChunkSize"]</strong></span>
+            <span class="rag-chip">Overlap: <strong>@ViewData["ChunkOverlap"]</strong></span>
+            <span class="rag-chip rag-chip-accent">Vector DB: <strong>@ViewData["VectorProvider"]</strong></span>
+        </div>
+    </section>
+
+    <div class="rag-grid">
+        <aside class="rag-panel rag-panel-left">
+            <div class="rag-panel-header">
+                <span class="rag-step">1</span>
+                <div>
+                    <h2>Upload document</h2>
+                    <p>Index a file to make it searchable.</p>
+                </div>
+            </div>
+
+            <form id="uploadForm" enctype="multipart/form-data" class="rag-upload-form">
+                <label class="rag-file-drop">
+                    <input class="form-control" type="file" id="file" name="file" accept=".pdf,.txt,.md,.docx,.csv" />
+                    <span class="rag-file-title" id="fileLabel">Browse files</span>
+                    <span class="rag-file-help">PDF, DOCX, TXT, MD, CSV</span>
+                </label>
+                <button class="btn rag-btn rag-btn-primary" id="uploadBtn" type="submit" disabled>Upload and Process</button>
+            </form>
+
+            <div class="rag-alert alert d-none" id="uploadAlert"></div>
+
+            <div class="rag-status-card">
+                <div class="rag-status-row"><strong>Document ID</strong><span id="docId">-</span></div>
+                <div class="rag-status-row"><strong>Status</strong><span class="badge text-bg-secondary" id="docStatus">Not started</span></div>
+                <div class="small text-danger mt-2" id="docError"></div>
+            </div>
+
+            <div class="rag-vector-card">
+                <div class="rag-vector-card-header">
+                    <div>
+                        <h3>MongoDB vector data</h3>
+                        <p>Chunk vectors for the selected document.</p>
+                    </div>
+                    <span class="rag-vector-count" id="vectorCount">0 vectors</span>
+                </div>
+                <div id="vectorList" class="rag-vector-list">
+                    <div class="rag-vector-empty">Upload a file to inspect stored vectors.</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="rag-panel rag-panel-right">
+            <div class="rag-panel-header">
+                <span class="rag-step rag-step-accent">2</span>
+                <div>
+                    <h2>Chat</h2>
+                    <p>Ask follow-up questions and keep the conversation in one place.</p>
+                </div>
+            </div>
+
+            <section class="rag-chat-thread" id="chatThread" aria-live="polite"></section>
+
+            <form id="askForm" class="rag-ask-form rag-composer">
+                <textarea class="form-control rag-question" id="question" rows="4" placeholder="Ask something about uploaded documents..."></textarea>
+                <div class="rag-form-actions">
+                    <button class="btn rag-btn rag-btn-secondary" id="askBtn" type="submit">Send</button>
+                </div>
+            </form>
+
+            <div class="rag-alert alert d-none" id="askAlert"></div>
+        </main>
+    </div>
+</div>
+
+<script>
+    const uploadForm = document.getElementById('uploadForm');
+    const askForm = document.getElementById('askForm');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const askBtn = document.getElementById('askBtn');
+
+    const fileInput = document.getElementById('file');
+    const fileLabel = document.getElementById('fileLabel');
+    const docIdLabel = document.getElementById('docId');
+    const docStatus = document.getElementById('docStatus');
+    const docError = document.getElementById('docError');
+    const uploadAlert = document.getElementById('uploadAlert');
+
+    const chatThread = document.getElementById('chatThread');
+    const askAlert = document.getElementById('askAlert');
+    const vectorList = document.getElementById('vectorList');
+    const vectorCount = document.getElementById('vectorCount');
+
+    const question = document.getElementById('question');
+
+    let currentDocumentId = null;
+
+    function showAlert(element, type, message) {
+        element.className = `alert rag-alert alert-${type}`;
+        element.textContent = message;
+        element.classList.remove('d-none');
+    }
+
+    function clearAlert(element) {
+        element.classList.add('d-none');
+        element.textContent = '';
+    }
+
+    function setStatusBadge(status) {
+        const map = {
+            NotStarted: 'text-bg-secondary',
+            Queued: 'text-bg-secondary',
+            Processing: 'text-bg-warning',
+            Completed: 'text-bg-success',
+            Failed: 'text-bg-danger'
+        };
+
+        docStatus.className = `badge ${map[status] ?? 'text-bg-secondary'}`;
+        docStatus.textContent = status;
+    }
+
+    function scrollChatToBottom() {
+        chatThread.scrollTop = chatThread.scrollHeight;
+    }
+
+    function renderEmptyState() {
+        chatThread.innerHTML = `
+            <div class="rag-empty-chat">
+                <div class="rag-empty-chat-icon">✦</div>
+                <div>
+                    <h3>Start a new conversation</h3>
+                    <p>Upload a document and ask a question. The current chat stays on this page only.</p>
+                </div>
+            </div>`;
+    }
+
+    function renderSourceList(container, sources) {
+        if (!sources || sources.length === 0) {
+            return;
+        }
+
+        const wrap = document.createElement('div');
+        wrap.className = 'rag-message-sources';
+
+        for (const source of sources) {
+            const pill = document.createElement('span');
+            pill.className = 'rag-source-pill';
+            pill.textContent = `${source.fileName} · Chunk ${source.chunkIndex}`;
+            wrap.appendChild(pill);
+        }
+
+        container.appendChild(wrap);
+    }
+
+    function getRelevanceClass(score) {
+        if (score >= 75) return 'rag-relevance-high';
+        if (score >= 40) return 'rag-relevance-medium';
+        return 'rag-relevance-low';
+    }
+
+    function renderMessage(message) {
+        const row = document.createElement('article');
+        row.className = `rag-message ${message.role === 'user' ? 'rag-message-user' : 'rag-message-assistant'}`;
+
+        const meta = document.createElement('div');
+        meta.className = 'rag-message-meta';
+
+        const title = document.createElement('span');
+        title.textContent = message.role === 'user' ? 'You' : 'Assistant';
+        meta.appendChild(title);
+
+        if (typeof message.relevanceScore === 'number') {
+            const relevance = document.createElement('span');
+            relevance.className = `rag-relevance-pill ${getRelevanceClass(message.relevanceScore)}`;
+            relevance.textContent = `${message.relevanceScore.toFixed(0)}% relevant`;
+            meta.appendChild(relevance);
+        }
+
+        const bubble = document.createElement('div');
+        bubble.className = 'rag-message-bubble';
+        bubble.textContent = message.content ?? '';
+
+        row.appendChild(meta);
+        row.appendChild(bubble);
+        renderSourceList(row, message.sources ?? []);
+        chatThread.appendChild(row);
+    }
+
+    function appendTurn(questionText, answerText, sources, relevanceScore) {
+        const emptyState = chatThread.querySelector('.rag-empty-chat');
+        if (emptyState) {
+            chatThread.innerHTML = '';
+        }
+
+        renderMessage({ role: 'user', content: questionText, sources: [], relevanceScore });
+        renderMessage({ role: 'assistant', content: answerText, sources: sources ?? [] });
+        scrollChatToBottom();
+    }
+
+    function renderVectorList(vectors) {
+        vectorList.innerHTML = '';
+        vectorCount.textContent = `${vectors.length} vector${vectors.length === 1 ? '' : 's'}`;
+
+        if (!vectors || vectors.length === 0) {
+            vectorList.innerHTML = '<div class="rag-vector-empty">No vectors loaded for this document yet.</div>';
+            return;
+        }
+
+        for (const vector of vectors) {
+            const card = document.createElement('div');
+            card.className = 'rag-vector-item';
+            card.innerHTML = `
+                <div class="rag-vector-item-top">
+                    <strong>${vector.chunkId}</strong>
+                    <span>${vector.dimensions} dims</span>
+                </div>
+                <div class="rag-vector-preview">${(vector.preview ?? []).join(', ')}</div>
+                <div class="rag-vector-footer">Magnitude: ${vector.magnitude ?? 0}</div>`;
+            vectorList.appendChild(card);
+        }
+    }
+
+    async function loadVectors(documentId) {
+        try {
+            const res = await fetch(`/documents/${documentId}/vectors`);
+            if (!res.ok) {
+                renderVectorList([]);
+                return;
+            }
+
+            const vectors = await res.json();
+            renderVectorList(vectors);
+        } catch {
+            renderVectorList([]);
+        }
+    }
+
+    async function pollStatus(documentId) {
+        for (let i = 0; i < 40; i++) {
+            const res = await fetch(`/documents/${documentId}`);
+            if (!res.ok) {
+                showAlert(uploadAlert, 'danger', 'Failed to read processing status.');
+                return;
+            }
+
+            const data = await res.json();
+            setStatusBadge(data.status);
+            docError.textContent = data.error ?? '';
+
+            if (data.status === 'Completed') {
+                showAlert(uploadAlert, 'success', 'Document indexed successfully. You can ask questions now.');
+                await loadVectors(documentId);
+                return;
+            }
+
+            if (data.status === 'Failed') {
+                showAlert(uploadAlert, 'danger', `Indexing failed: ${data.error ?? 'unknown error'}`);
+                return;
+            }
+
+            await new Promise(r => setTimeout(r, 1500));
+        }
+
+        showAlert(uploadAlert, 'warning', 'Processing is taking longer than expected.');
+    }
+
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files?.[0];
+        fileLabel.textContent = file ? file.name : 'Browse files';
+        uploadBtn.disabled = !file;
+        clearAlert(uploadAlert);
+    });
+
+    question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            askForm.requestSubmit();
+        }
+    });
+
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAlert(uploadAlert);
+
+        const file = fileInput.files?.[0];
+        if (!file) {
+            showAlert(uploadAlert, 'warning', 'Please choose a file before uploading.');
+            uploadBtn.disabled = true;
+            return;
+        }
+
+        uploadBtn.disabled = true;
+
+        try {
+            const formData = new FormData(uploadForm);
+            const res = await fetch('/documents/upload', { method: 'POST', body: formData });
+            const data = await res.json();
+
+            if (!res.ok) {
+                showAlert(uploadAlert, 'danger', typeof data === 'string' ? data : 'Upload failed.');
+                return;
+            }
+
+            currentDocumentId = data.documentId;
+            docIdLabel.textContent = currentDocumentId;
+            setStatusBadge(data.status ?? 'Queued');
+            renderVectorList([]);
+            await pollStatus(currentDocumentId);
+        } catch {
+            showAlert(uploadAlert, 'danger', 'Upload failed due to network or server error.');
+        } finally {
+            uploadBtn.disabled = !fileInput.files?.length;
+        }
+    });
+
+    askForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAlert(askAlert);
+        askBtn.disabled = true;
+
+        try {
+            const prompt = question.value?.trim();
+            if (!prompt) {
+                showAlert(askAlert, 'warning', 'Please enter a question.');
+                return;
+            }
+
+            const res = await fetch('/chat/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: prompt, topK: 8 })
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                showAlert(askAlert, 'danger', typeof data === 'string' ? data : 'Query failed.');
+                return;
+            }
+
+            question.value = '';
+            appendTurn(prompt, data.answer ?? 'No answer generated.', data.sources ?? [], data.relevanceScore ?? 0);
+        } catch {
+            showAlert(askAlert, 'danger', 'Could not contact server.');
+        } finally {
+            askBtn.disabled = false;
+        }
+    });
+
+    renderEmptyState();
+    renderVectorList([]);
+</script>
