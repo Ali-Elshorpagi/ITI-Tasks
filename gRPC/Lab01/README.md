@@ -17,37 +17,37 @@ This lab builds **FleetPulse**, a gRPC server hosted in ASP.NET Core that expose
 
 ## Projects
 
-| Project | Role | Description |
-|---------|------|-------------|
-| **FleetPulse.gRPC** | Server | ASP.NET Core gRPC host exposing `VehicleService` and `FleetOperationsService`. |
+| Project               | Role   | Description                                                                                                        |
+| --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
+| **FleetPulse.gRPC**   | Server | ASP.NET Core gRPC host exposing `VehicleService` and `FleetOperationsService`.                                     |
 | **FleetPulse.Client** | Client | Console app exercising all four `FleetOperationsService` RPCs: create, get, update status, and list (with filter). |
-| **Vehicle.Client** | Client | Console app exercising both `VehicleService` RPCs: register and get a vehicle. |
+| **Vehicle.Client**    | Client | Console app exercising both `VehicleService` RPCs: register and get a vehicle.                                     |
 
 ## Services & RPCs
 
 ### VehicleService (`vehicle.proto`)
 
-| RPC | Request | Response | Description |
-|-----|---------|----------|-------------|
-| `RegisterVehicle` | `RegisterVehicleRequest` | `VehicleReply` | Creates a new vehicle and stores it in memory. |
-| `GetVehicle` | `GetVehicleRequest` | `VehicleReply` | Retrieves a vehicle by ID; throws `NOT_FOUND` if missing. |
+| RPC               | Request                  | Response       | Description                                               |
+| ----------------- | ------------------------ | -------------- | --------------------------------------------------------- |
+| `RegisterVehicle` | `RegisterVehicleRequest` | `VehicleReply` | Creates a new vehicle and stores it in memory.            |
+| `GetVehicle`      | `GetVehicleRequest`      | `VehicleReply` | Retrieves a vehicle by ID; throws `NOT_FOUND` if missing. |
 
 ### FleetOperationsService (`fleet.proto`)
 
-| RPC | Request | Response | Description |
-|-----|---------|----------|-------------|
-| `CreateOrder` | `CreateOrderRequest` | `OrderReply` | Creates an order with items, extra info, delivery notes, and a package type. |
-| `GetOrder` | `GetOrderRequest` | `OrderReply` | Retrieves an order by ID; throws `NOT_FOUND` if missing. |
-| `UpdateOrderStatus` | `UpdateOrderStatusRequest` | `OrderReply` | Changes the delivery status of an existing order. |
-| `ListOrders` | `ListOrdersRequest` | `ListOrdersReply` | Returns all orders, optionally filtered by `DeliveryStatus`. |
+| RPC                 | Request                    | Response          | Description                                                                  |
+| ------------------- | -------------------------- | ----------------- | ---------------------------------------------------------------------------- |
+| `CreateOrder`       | `CreateOrderRequest`       | `OrderReply`      | Creates an order with items, extra info, delivery notes, and a package type. |
+| `GetOrder`          | `GetOrderRequest`          | `OrderReply`      | Retrieves an order by ID; throws `NOT_FOUND` if missing.                     |
+| `UpdateOrderStatus` | `UpdateOrderStatusRequest` | `OrderReply`      | Changes the delivery status of an existing order.                            |
+| `ListOrders`        | `ListOrdersRequest`        | `ListOrdersReply` | Returns all orders, optionally filtered by `DeliveryStatus`.                 |
 
 ## Setup & Run
 
 ### Prerequisites
 
-| Tool | Version |
-|------|---------|
-| .NET SDK | 8.0+ |
+| Tool     | Version |
+| -------- | ------- |
+| .NET SDK | 10.0+   |
 
 ### 1. Run the server
 
