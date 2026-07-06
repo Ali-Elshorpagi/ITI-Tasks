@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FleetPulse.API/FleetPulse.API.csproj" Id="82c6afd4-c781-45e6-b977-80a6f853a846" />
+  <Project Path="FleetPulse.Client/FleetPulse.Client.csproj" />
+  <Project Path="FleetPulse.OrderService/FleetPulse.OrderService.csproj" />
+  <Project Path="Vehicle.Client/Vehicle.Client.csproj" />
+</Solution>
