@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Hub — Live</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body { background: #f8f9fa; }
+        #status-badge { font-size: .75rem; }
+        .fade-in { animation: fadeIn .4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; } }
+        tr.highlight { background: #fff3cd !important; transition: background .3s; }
+    </style>
+</head>
+<body>
+<div class="container py-4">
+
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <h2 class="mb-0">Student Hub</h2>
+        <span id="status-badge" class="badge bg-secondary">Connecting…</span>
+    </div>
+
+    <!-- ── Departments ─────────────────────────────────────────────── -->
+    <div class="card mb-3 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">
+                Departments
+                <span class="badge bg-secondary ms-1" id="dept-count">0</span>
+                <small class="text-muted fw-normal ms-2" style="font-size:.75rem">Real-time via SignalR</small>
+            </span>
+            <button class="btn btn-sm btn-outline-secondary" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#dept-panel">
+                Toggle
+            </button>
+        </div>
+        <div class="collapse show" id="dept-panel">
+            <div class="card-body">
+                <form id="dept-form" class="row g-2 mb-3">
+                    <div class="col-md-3">
+                        <input id="dept-name" type="text" class="form-control form-control-sm"
+                               placeholder="Name (max 10 chars)" maxlength="10" required />
+                    </div>
+                    <div class="col-md-5">
+                        <input id="dept-desc" type="text" class="form-control form-control-sm"
+                               placeholder="Description" />
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-sm btn-success w-100">Add Department</button>
+                    </div>
+                </form>
+                <div id="dept-error" class="alert alert-danger py-1 small d-none"></div>
+                <table class="table table-sm table-bordered mb-0">
+                    <thead class="table-light">
+                        <tr><th>#</th><th>Name</th><th>Description</th><th></th></tr>
+                    </thead>
+                    <tbody id="dept-body">
+                        <tr><td colspan="4" class="text-center text-muted">Loading…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Add Student ────────────────────────────────────────────── -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-semibold">Add New Student</div>
+        <div class="card-body">
+            <form id="add-form" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Name</label>
+                    <input id="name" type="text" class="form-control" required placeholder="Student name" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Age</label>
+                    <input id="age" type="number" class="form-control" required min="1" max="100" placeholder="Age" />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Department</label>
+                    <select id="departmentId" class="form-select" required>
+                        <option value="" disabled selected>Select department</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Add Student</button>
+                </div>
+            </form>
+            <div id="form-error" class="alert alert-danger mt-2 d-none"></div>
+        </div>
+    </div>
+
+    <!-- ── Students Table ─────────────────────────────────────────── -->
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">
+                Students <span id="student-count" class="badge bg-secondary ms-1">0</span>
+                <small class="text-muted fw-normal ms-2" style="font-size:.75rem">Real-time via SignalR</small>
+            </span>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Department</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="students-body">
+                    <tr><td colspan="5" class="text-center text-muted py-3">Loading…</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ── Edit Department Modal ─────────────────────────────────────── -->
+<div class="modal fade" id="editDeptModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="edit-dept-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-dept-id" />
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input id="edit-dept-name" type="text" class="form-control"
+                               maxlength="10" required placeholder="Max 10 chars" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input id="edit-dept-desc" type="text" class="form-control" />
+                    </div>
+                    <div id="edit-dept-error" class="alert alert-danger py-1 small d-none"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ── Edit Student Modal ─────────────────────────────────────────── -->
+<div class="modal fade" id="editStudentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="edit-student-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-student-id" />
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input id="edit-student-name" type="text" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Age</label>
+                        <input id="edit-student-age" type="number" class="form-control"
+                               required min="1" max="100" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select id="edit-student-dept" class="form-select" required></select>
+                    </div>
+                    <div id="edit-student-error" class="alert alert-danger py-1 small d-none"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/microsoft-signalr/signalr.min.js"></script>
+<script>
+    // ── Local state ─────────────────────────────────────────────────
+    const deptMap    = {};   // id → { id, name, description }
+    const studentMap = {};   // id → { id, name, age, departmentId }
+
+    // ── Bootstrap modal instances ────────────────────────────────────
+    const editDeptModal    = new bootstrap.Modal(document.getElementById("editDeptModal"));
+    const editStudentModal = new bootstrap.Modal(document.getElementById("editStudentModal"));
+
+    // ── SignalR connection ───────────────────────────────────────────
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/hubs/student")
+        .withAutomaticReconnect()
+        .build();
+
+    const badge = document.getElementById("status-badge");
+
+    // Department real-time events
+    connection.on("DepartmentAdded", d => {
+        deptMap[d.id] = d;
+        removeDeptEmptyRow();
+        deptTbody().appendChild(buildDeptRow(d));
+        addDropdownOption(d);
+        updateDeptCount();
+    });
+
+    connection.on("DepartmentUpdated", d => {
+        deptMap[d.id] = d;
+        const row = deptTbody().querySelector(`tr[data-id="${d.id}"]`);
+        if (row) {
+            const next = buildDeptRow(d);
+            next.classList.add("highlight");
+            row.replaceWith(next);
+            setTimeout(() => next.classList.remove("highlight"), 1500);
+        }
+        const opt = document.querySelector(`#departmentId option[value="${d.id}"]`);
+        if (opt) opt.textContent = d.name;
+        const editOpt = document.querySelector(`#edit-student-dept option[value="${d.id}"]`);
+        if (editOpt) editOpt.textContent = d.name;
+        document.querySelectorAll("#students-body tr[data-id]").forEach(tr => {
+            if (parseInt(tr.dataset.dept) === d.id) {
+                tr.querySelector("td:nth-child(4)").textContent = d.name;
+            }
+        });
+    });
+
+    connection.on("DepartmentDeleted", id => {
+        delete deptMap[id];
+        deptTbody().querySelector(`tr[data-id="${id}"]`)?.remove();
+        document.querySelector(`#departmentId option[value="${id}"]`)?.remove();
+        document.querySelector(`#edit-student-dept option[value="${id}"]`)?.remove();
+        if (deptTbody().children.length === 0) showDeptEmpty();
+        updateDeptCount();
+    });
+
+    // Student real-time events
+    connection.on("StudentAdded", s => {
+        studentMap[s.id] = s;
+        removeStudentEmptyRow();
+        studentsTbody().prepend(buildStudentRow(s));
+        updateStudentCount();
+    });
+
+    connection.on("StudentUpdated", s => {
+        studentMap[s.id] = s;
+        const row = studentsTbody().querySelector(`tr[data-id="${s.id}"]`);
+        if (!row) return;
+        const next = buildStudentRow(s);
+        next.classList.add("highlight");
+        row.replaceWith(next);
+        setTimeout(() => next.classList.remove("highlight"), 1500);
+    });
+
+    connection.on("StudentDeleted", id => {
+        delete studentMap[id];
+        studentsTbody().querySelector(`tr[data-id="${id}"]`)?.remove();
+        if (studentsTbody().children.length === 0) showStudentEmpty();
+        updateStudentCount();
+    });
+
+    connection.onreconnecting(() => setBadge("warning", "Reconnecting…"));
+    connection.onreconnected(() => { setBadge("success", "Connected"); loadAll(); });
+    connection.onclose(()    => setBadge("danger",  "Disconnected"));
+
+    async function startConnection() {
+        try {
+            await connection.start();
+            setBadge("success", "Connected");
+        } catch {
+            setBadge("danger", "Connection failed");
+            setTimeout(startConnection, 5000);
+        }
+    }
+
+    // ── Shared helpers ───────────────────────────────────────────────
+    const studentsTbody = () => document.getElementById("students-body");
+    const deptTbody     = () => document.getElementById("dept-body");
+
+    function setBadge(color, text) {
+        badge.className = `badge bg-${color}`;
+        badge.textContent = text;
+    }
+
+    function escHtml(str) {
+        return String(str ?? "")
+            .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+
+    // ── Department helpers ───────────────────────────────────────────
+    function updateDeptCount() {
+        document.getElementById("dept-count").textContent =
+            deptTbody().querySelectorAll("tr[data-id]").length;
+    }
+
+    function showDeptEmpty() {
+        deptTbody().innerHTML =
+            '<tr><td colspan="4" class="text-center text-muted">No departments yet. Add one above.</td></tr>';
+    }
+
+    function removeDeptEmptyRow() {
+        deptTbody().querySelectorAll("tr:not([data-id])").forEach(r => r.remove());
+    }
+
+    function buildDeptRow(d) {
+        const tr = document.createElement("tr");
+        tr.dataset.id = d.id;
+        tr.classList.add("fade-in");
+        tr.innerHTML = `
+            <td>${d.id}</td>
+            <td><strong>${escHtml(d.name)}</strong></td>
+            <td>${escHtml(d.description)}</td>
+            <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1"
+                        onclick="openEditDept(${d.id})">Edit</button>
+                <button class="btn btn-sm btn-outline-danger"
+                        onclick="deleteDept(${d.id})">Delete</button>
+            </td>`;
+        return tr;
+    }
+
+    function addDropdownOption(d) {
+        const sel = document.getElementById("departmentId");
+        if (!sel.querySelector(`option[value="${d.id}"]`)) {
+            sel.appendChild(new Option(d.name, d.id));
+        }
+        const editSel = document.getElementById("edit-student-dept");
+        if (!editSel.querySelector(`option[value="${d.id}"]`)) {
+            editSel.appendChild(new Option(d.name, d.id));
+        }
+    }
+
+    function openEditDept(id) {
+        const d = deptMap[id];
+        if (!d) return;
+        document.getElementById("edit-dept-id").value   = d.id;
+        document.getElementById("edit-dept-name").value = d.name;
+        document.getElementById("edit-dept-desc").value = d.description ?? "";
+        document.getElementById("edit-dept-error").classList.add("d-none");
+        editDeptModal.show();
+    }
+
+    async function deleteDept(id) {
+        if (!confirm("Delete this department? Students in it may be affected.")) return;
+        await fetch(`/api/departments/${id}`, { method: "DELETE" });
+        // SignalR "DepartmentDeleted" handles UI update
+    }
+
+    document.getElementById("edit-dept-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const errEl = document.getElementById("edit-dept-error");
+        errEl.classList.add("d-none");
+
+        const id   = parseInt(document.getElementById("edit-dept-id").value);
+        const body = {
+            id,
+            name:        document.getElementById("edit-dept-name").value.trim(),
+            description: document.getElementById("edit-dept-desc").value.trim()
+        };
+
+        const res = await fetch(`/api/departments/${id}`, {
+            method:  "PUT",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify(body)
+        });
+
+        if (res.ok || res.status === 204) {
+            editDeptModal.hide();
+        } else {
+            errEl.textContent = await extractError(res);
+            errEl.classList.remove("d-none");
+        }
+    });
+
+    async function loadDepartments() {
+        const res = await fetch("/api/departments");
+        if (!res.ok) return;
+        const depts = await res.json();
+
+        depts.forEach(d => { deptMap[d.id] = d; });
+
+        const sel     = document.getElementById("departmentId");
+        const editSel = document.getElementById("edit-student-dept");
+        sel.innerHTML     = '<option value="" disabled selected>Select department</option>';
+        editSel.innerHTML = '';
+        deptTbody().innerHTML = "";
+
+        if (depts.length === 0) {
+            showDeptEmpty();
+        } else {
+            depts.forEach(d => {
+                deptTbody().appendChild(buildDeptRow(d));
+                sel.appendChild(new Option(d.name, d.id));
+                editSel.appendChild(new Option(d.name, d.id));
+            });
+        }
+        updateDeptCount();
+    }
+
+    document.getElementById("dept-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const errEl = document.getElementById("dept-error");
+        errEl.classList.add("d-none");
+
+        const body = {
+            name:        document.getElementById("dept-name").value.trim(),
+            description: document.getElementById("dept-desc").value.trim()
+        };
+
+        const res = await fetch("/api/departments", {
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify(body)
+        });
+
+        if (res.ok || res.status === 201) {
+            e.target.reset();
+        } else {
+            errEl.textContent = await extractError(res);
+            errEl.classList.remove("d-none");
+        }
+    });
+
+    // ── Student helpers ──────────────────────────────────────────────
+    function updateStudentCount() {
+        document.getElementById("student-count").textContent =
+            studentsTbody().querySelectorAll("tr[data-id]").length;
+    }
+
+    function showStudentEmpty() {
+        studentsTbody().innerHTML =
+            '<tr><td colspan="5" class="text-center text-muted py-3">No students yet.</td></tr>';
+    }
+
+    function removeStudentEmptyRow() {
+        studentsTbody().querySelectorAll("tr:not([data-id])").forEach(r => r.remove());
+    }
+
+    function buildStudentRow(s) {
+        const deptName = deptMap[s.departmentId]?.name ?? `Dept #${s.departmentId}`;
+        const tr = document.createElement("tr");
+        tr.dataset.id   = s.id;
+        tr.dataset.dept = s.departmentId;
+        tr.classList.add("fade-in");
+        tr.innerHTML = `
+            <td>${s.id}</td>
+            <td>${escHtml(s.name)}</td>
+            <td>${s.age}</td>
+            <td>${escHtml(deptName)}</td>
+            <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1"
+                        onclick="openEditStudent(${s.id})">Edit</button>
+                <button class="btn btn-sm btn-outline-danger"
+                        onclick="deleteStudent(${s.id})">Delete</button>
+            </td>`;
+        return tr;
+    }
+
+    function openEditStudent(id) {
+        const s = studentMap[id];
+        if (!s) return;
+        document.getElementById("edit-student-id").value    = s.id;
+        document.getElementById("edit-student-name").value  = s.name ?? "";
+        document.getElementById("edit-student-age").value   = s.age;
+        document.getElementById("edit-student-dept").value  = s.departmentId;
+        document.getElementById("edit-student-error").classList.add("d-none");
+        editStudentModal.show();
+    }
+
+    document.getElementById("edit-student-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const errEl = document.getElementById("edit-student-error");
+        errEl.classList.add("d-none");
+
+        const id   = parseInt(document.getElementById("edit-student-id").value);
+        const body = {
+            id,
+            name:         document.getElementById("edit-student-name").value.trim(),
+            age:          parseInt(document.getElementById("edit-student-age").value),
+            departmentId: parseInt(document.getElementById("edit-student-dept").value)
+        };
+
+        const res = await fetch(`/api/students/${id}`, {
+            method:  "PUT",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify(body)
+        });
+
+        if (res.ok || res.status === 204) {
+            editStudentModal.hide();
+        } else {
+            errEl.textContent = await extractError(res);
+            errEl.classList.remove("d-none");
+        }
+    });
+
+    async function loadStudents() {
+        const res = await fetch("/api/students");
+        if (!res.ok) return;
+        const students = await res.json();
+        students.forEach(s => { studentMap[s.id] = s; });
+        studentsTbody().innerHTML = "";
+        if (students.length === 0) { showStudentEmpty(); }
+        else { students.forEach(s => studentsTbody().appendChild(buildStudentRow(s))); }
+        updateStudentCount();
+    }
+
+    document.getElementById("add-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const errEl = document.getElementById("form-error");
+        errEl.classList.add("d-none");
+
+        const deptId = parseInt(document.getElementById("departmentId").value);
+        if (!deptId) {
+            errEl.textContent = "Please select a department.";
+            errEl.classList.remove("d-none");
+            return;
+        }
+
+        const body = {
+            name:         document.getElementById("name").value.trim(),
+            age:          parseInt(document.getElementById("age").value),
+            departmentId: deptId
+        };
+
+        const res = await fetch("/api/students", {
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify(body)
+        });
+
+        if (res.ok || res.status === 201) {
+            e.target.reset();
+            document.getElementById("departmentId").value = "";
+        } else {
+            errEl.textContent = await extractError(res);
+            errEl.classList.remove("d-none");
+        }
+    });
+
+    async function deleteStudent(id) {
+        if (!confirm("Delete this student?")) return;
+        await fetch(`/api/students/${id}`, { method: "DELETE" });
+        // SignalR "StudentDeleted" handles UI update
+    }
+
+    // ── Error parsing ────────────────────────────────────────────────
+    async function extractError(res) {
+        const text = await res.text();
+        try {
+            const json = JSON.parse(text);
+            if (json.errors) return Object.values(json.errors).flat().join(" ");
+            return json.title ?? json.message ?? text;
+        } catch {
+            return text || "An error occurred.";
+        }
+    }
+
+    // ── Boot ─────────────────────────────────────────────────────────
+    async function loadAll() {
+        await loadDepartments();
+        await loadStudents();
+    }
+
+    startConnection();
+    loadAll();
+</script>
+</body>
+</html>
