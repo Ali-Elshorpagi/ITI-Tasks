@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>Welcome, @Context.Session.GetString("DisplayName")! 👋</h2>
+        <p class="text-muted">You are logged in as <strong>@Context.Session.GetString("UserName")</strong></p>
+        <hr />
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div style="font-size: 2.5rem;">🏠</div>
+                <h5 class="card-title mt-2">Chat Rooms</h5>
+                <p class="card-text text-muted">Join a public room and chat with everyone.</p>
+                <a asp-controller="Rooms" asp-action="Index" class="btn btn-primary">View Rooms</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div style="font-size: 2.5rem;">💬</div>
+                <h5 class="card-title mt-2">Private Chat</h5>
+                <p class="card-text text-muted">Send direct messages to other users.</p>
+                <a asp-controller="Users" asp-action="Online" class="btn btn-success">Find Users</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div style="font-size: 2.5rem;">🟢</div>
+                <h5 class="card-title mt-2">Online Users</h5>
+                <p class="card-text text-muted">See who is currently online.</p>
+                <a asp-controller="Users" asp-action="Online" class="btn btn-info text-white">View Online</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <div style="font-size: 2.5rem;">📋</div>
+                <h5 class="card-title mt-2">Audit Logs</h5>
+                <p class="card-text text-muted">Review all user activity logs.</p>
+                <a asp-controller="Audit" asp-action="Logs" class="btn btn-secondary">View Logs</a>
+            </div>
+        </div>
+    </div>
+</div>

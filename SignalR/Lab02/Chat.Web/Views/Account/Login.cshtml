@@ -1,0 +1,38 @@
+@model Chat.Web.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4">💬 ChatApp Login</h3>
+
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="All" class="alert alert-danger" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmailOrUsername" class="form-label">Email or Username</label>
+                        <input asp-for="EmailOrUsername" class="form-control" placeholder="you@example.com or username" />
+                        <span asp-validation-for="EmailOrUsername" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="••••••" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+
+                <hr />
+                <p class="text-center mb-0">
+                    Don't have an account?
+                    <a asp-action="Register">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

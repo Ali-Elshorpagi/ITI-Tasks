@@ -1,0 +1,67 @@
+@model List<Chat.Web.Models.RoomViewModel>
+@{
+    ViewData["Title"] = "Chat Rooms";
+    var jwtToken = Context.Session.GetString("JwtToken") ?? "";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>🏠 Chat Rooms</h3>
+    <a asp-action="Create" class="btn btn-primary">+ Create Room</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No rooms yet. Be the first to create one!</div>
+}
+
+<div class="row g-3">
+    @foreach (var room in Model)
+    {
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@room.Name</h5>
+                    <p class="card-text text-muted">@room.Description</p>
+                    <small class="text-muted">
+                        Created by <strong>@room.CreatedByUserName</strong> &bull;
+                        <span class="badge bg-secondary">@room.MemberCount members</span>
+                    </small>
+                </div>
+                <div class="card-footer d-flex gap-2">
+                    @if (room.IsMember)
+                    {
+                        <a asp-controller="Chat" asp-action="Room" asp-route-id="@room.Id"
+                           class="btn btn-success btn-sm">Enter</a>
+                        <a asp-action="Leave" asp-route-id="@room.Id"
+                           class="btn btn-outline-warning btn-sm">Leave</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Join" asp-route-id="@room.Id"
+                           class="btn btn-outline-primary btn-sm">Join</a>
+                    }
+                    <a asp-action="Delete" asp-route-id="@room.Id"
+                       class="btn btn-outline-danger btn-sm ms-auto"
+                       onclick="return confirm('Delete this room?')">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+<script>
+    const token = "@jwtToken";
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:7000/hubs/chat", { accessTokenFactory: () => token })
+        .withAutomaticReconnect()
+        .build();
+
+    connection.on("RoomsUpdated", function () {
+        location.reload();
+    });
+
+    connection.start().catch(err => console.error(err));
+</script>
+}

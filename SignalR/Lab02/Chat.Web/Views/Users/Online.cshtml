@@ -1,0 +1,64 @@
+@model List<Chat.Web.Models.UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+    var currentUserId = ViewBag.CurrentUserId as string ?? "";
+    var jwtToken = ViewBag.JwtToken as string ?? "";
+}
+
+<h3 class="mb-3">👥 All Users</h3>
+
+<div class="row g-3" id="userList">
+    @foreach (var user in Model)
+    {
+        if (user.Id == currentUserId) continue;
+        <div class="col-md-3 user-card" data-userid="@user.Id">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <span class="online-dot @(user.IsOnline ? "online" : "offline")"></span>
+                    <strong> @user.DisplayName</strong>
+                    <br />
+                    <small class="text-muted">@@@user.UserName</small>
+                    <br />
+                    <small class="@(user.IsOnline ? "text-success" : "text-muted")">
+                        @(user.IsOnline ? "Online" : "Offline")
+                    </small>
+                    <br /><br />
+                    <a asp-controller="Chat" asp-action="Private" asp-route-userId="@user.Id"
+                       class="btn btn-sm btn-outline-primary">Message</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+<script>
+    const token = "@jwtToken";
+    const currentUserId = "@currentUserId";
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:7000/hubs/chat", { accessTokenFactory: () => token })
+        .withAutomaticReconnect()
+        .build();
+
+    connection.on("UserConnected", function (userId, userName) {
+        const card = document.querySelector(`.user-card[data-userid="${userId}"]`);
+        if (card) {
+            card.querySelector(".online-dot").className = "online-dot online";
+            card.querySelector("small.text-muted, small.text-success")
+                .outerHTML = `<small class="text-success">Online</small>`;
+        }
+    });
+
+    connection.on("UserDisconnected", function (userId, userName) {
+        const card = document.querySelector(`.user-card[data-userid="${userId}"]`);
+        if (card) {
+            card.querySelector(".online-dot").className = "online-dot offline";
+            const statusEl = card.querySelector("small.text-success, small.text-muted");
+            if (statusEl) statusEl.outerHTML = `<small class="text-muted">Offline</small>`;
+        }
+    });
+
+    connection.start().catch(err => console.error(err));
+</script>
+}
